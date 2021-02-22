@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <comment>a fault description</comment>
+
+   <entry key="fault-description.id">14</entry>
+   <entry key="fault-description.label">hybrid near empty battery</entry>
+   <entry key="sensor-behavior.directory">input\fault-descriptions\fd_14_hybrid_near_empty_battery</entry>
+	
+</properties>

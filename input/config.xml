@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <comment>configuration for icosmo thesis simulation</comment>
+   <entry key="global.log.level">DEBUG</entry>
+   <entry key="global.simulation-loader.analysis.replay.number.iterations">1</entry>
+   <entry key="global.simulation-loader.root-directory">C:\example\root\project\java\icosmo_sim</entry>
+   <entry key="global.simulation-loader.history.mode">CREATE</entry>
+   <entry key="global.simulation-loader.history.input-file-path">history.ser</entry>
+   <entry key="global.simulation-loader.sensor-behavior.sensor-data-creation-mode">READ_ALL_SENSOR_BEHAVIOR</entry>
+   <entry key="global.simulation-loader.sensor-behavior.white-noise-file-path">input\basic-gen-params\white-noise.xml</entry>
+   <entry key="global.simulation-loader.sensor-behavior.amp-factor-file-path">input\basic-gen-params\amp-factor.xml</entry>
+   <entry key="global.simulation-loader.sensor-behavior.noise-amp-factor-file-path">input\basic-gen-params\noise-amp-factor.xml</entry>
+   <entry key="global.simulation-loader.sensor-behavior.noise-pvalue1-file-path">input\basic-gen-params\noise-pvalue-0.xml</entry>
+   <entry key="global.simulation-loader.sensor-behavior.noise-pvalue2-file-path">input\basic-gen-params\noise-pvalue-1.xml</entry>
+   <entry key="global.simulation-loader.raw-sensor-reading.filter-pvalue">0.95</entry>
+   
+   <entry key="global.sensors.0">(61440,520)</entry>
+   <entry key="global.sensors.1">(65266,51)</entry>
+   <entry key="global.sensors.2">(65269,108)</entry>
+   <entry key="global.sensors.3">(61655,8339)</entry>
+   <entry key="global.sensors.4">(65264,187)</entry>
+   <entry key="global.sensors.5">(64695,8558)</entry>
+   <entry key="global.sensors.6">(65213,975)</entry>
+   <entry key="global.sensors.7">(65213,1639)</entry>
+   <entry key="global.sensors.8">(65271,168)</entry>
+   <entry key="global.sensors.9">(61444,4154)</entry>
+   <entry key="global.sensors.10">(65265,84)</entry>
+   <entry key="global.sensors.11">(65110,3031)</entry>
+   <entry key="global.sensors.12">(65266,185)</entry>
+   <entry key="global.sensors.13">(64695,5464)</entry>
+   <entry key="global.sensors.14">(61443,91)</entry>
+   <entry key="global.sensors.15">(65270,102)</entry>
+   <entry key="global.sensors.16">(61443,5398)</entry>
+   <entry key="global.sensors.17">(61443,3357)</entry>
+   <entry key="global.sensors.18">(61440,1717)</entry>
+   <entry key="global.sensors.19">(65262,110)</entry>
+   <entry key="global.sensors.20">(65247,514)</entry>
+   <entry key="global.sensors.21">(61444,512)</entry>
+   <entry key="global.sensors.22">(64509,8000)</entry>
+   <entry key="global.sensors.23">(64510,7988)</entry>
+   <entry key="global.sensors.24">(65215,904)</entry>
+   <entry key="global.sensors.25">(65263,100)</entry>
+   <entry key="global.sensors.26">(61444,2432)</entry>
+   <entry key="global.sensors.27">(61442,191)</entry>
+   <entry key="global.sensors.28">(61444,513)</entry>
+   <entry key="global.sensors.29">(64706,7895)</entry>
+   <entry key="global.sensors.30">(61443,92)</entry>
+   <entry key="global.sensors.31">(64499,8166)</entry>
+   <entry key="global.sensors.32">(65266,184)</entry>
+   <entry key="global.sensors.33">(65263,101)</entry>
+   <entry key="global.sensors.34">(65270,105)</entry>
+   <entry key="global.sensors.35">(65266,183)</entry>
+   <entry key="global.sensors.36">(64510,7986)</entry>
+   <entry key="global.sensors.37">(61450,2659)</entry>
+   <entry key="global.sensors.38">(64509,7998)</entry>
+   <entry key="global.sensors.39">(65110,1761)</entry>
+   <entry key="global.sensors.40">(61444,190)</entry>
+   <entry key="global.sensors.41">(65257,250)</entry>
+   <entry key="global.sensors.42">(64511,7975)</entry>
+   <entry key="global.sensors.43">(61450,132)</entry>
+   <entry key="global.sensors.44">(65272,177)</entry>
+   <entry key="global.sensors.45">(64509,7999)</entry>
+   <entry key="global.sensors.46">(65269,171)</entry>
+   <entry key="global.sensors.47">(65248,245)</entry>
+   <entry key="global.sensors.48">(65248,244)</entry>
+   <entry key="global.sensors.49">(64732,7319)</entry>
+   <entry key="global.sensors.50">(65257,182)</entry>
+   <entry key="global.sensors.51">(65217,918)</entry>
+   <entry key="global.sensors.52">(64891,5466)</entry>
+   <entry key="global.sensors.53">(65217,917)</entry>
+   <entry key="global.sensors.54">(64891,3721)</entry>
+   <entry key="global.sensors.55">(64948,3242)</entry>
+   <entry key="global.sensors.56">(64948,3241)</entry>
+   <entry key="global.sensors.57">(64777,5054)</entry>
+   <entry key="global.sensors.58">(64777,5053)</entry>
+   <entry key="global.sensors.59">(64947,3246)</entry>
+   <entry key="global.sensors.60">(64511,7974)</entry>
+
+   <entry key="global.log.file-path">output\log</entry>
+	
+   <entry key="global.vehicle.number">8</entry>
+   <entry key="global.algorithm.number">10</entry>
+   <entry key="global.number.time-ticks">60</entry>
+	
+   <entry key="cosmo.algorithm.distance-metrics.0">CITY_BLOCK</entry>
+   <entry key="cosmo.algorithm.distance-metrics.1">EUCLIDEAN</entry>
+   <entry key="cosmo.algorithm.distance-metrics.2">HELLIGNER</entry>
+   <entry key="cosmo.algorithm.distance-metrics.3">SQUARED_EUCLIDEAN</entry>
+   <entry key="cosmo.algorithm.distance-metrics.4">GOWER</entry>
+   <entry key="cosmo.algorithm.distance-metrics.5">INTERSECTION</entry>
+   <entry key="cosmo.algorithm.distance-metrics.6">FIDELITY</entry>
+   <entry key="cosmo.algorithm.distance-metrics.7">MATUSITA</entry>
+   <entry key="cosmo.algorithm.distance-metrics.8">COSINE</entry>
+   <entry key="cosmo.algorithm.distance-metrics.9">BHATTACHARYYA</entry>
+
+   
+   <entry key="cosmo.algorithm.selected-sensor.number">2</entry>
+   <entry key="cosmo.algorithm.zscore-update-frequency">7</entry>
+	
+   <entry key="fault-timer.faults.directory">input\fault-probabilities</entry>
+	
+   <entry key="fault.fault-generation-noise.config-file-path"></entry>
+   <entry key="fault.repair-generation-noise.config-file-path"></entry>
+   <entry key="fault.min-day-before-repair"></entry>
+   <entry key="fault.fault-description.id"></entry>
+	
+   <entry key="data-generation-timer.data-generation-sensor.directory">input\sensor-data-gen-behavior</entry>
+   <entry key="data-generation-timer.base-noise.config-file-path">input\base-noise.xml</entry>
+   <entry key="data-generation-timer.j1939-specificiation-document.file-path">j1939-spec-doc.csv</entry>
+   <entry key="data-generation-timer.j1939-data-dump.file-path">20181123_102054.j1939</entry>
+	
+   <entry key="data-generation-sensor.white-noise.config-file-path"></entry>
+   <entry key="data-generation-sensor.amp-factor-fleet-average.config-file-path"></entry>
+   <entry key="data-generation-sensor.noise-amp-factor-fleet-average.config-file-path"></entry>
+   <entry key="data-generation-sensor.noise-pvalue1-fleet-average.config-file-path"></entry>
+   <entry key="data-generation-sensor.noise-pvalue2-fleet-average.config-file-path"></entry>
+   <entry key="data-generation-sensor.sensor"></entry>
+	
+   <entry key="anomaly-detection-timer.zscore-window.size">30</entry>
+	
+   <entry key="performance-analysis-timer.left-window.size">0</entry>
+   <entry key="performance-analysis-timer.right-window.size">0</entry>
+   <entry key="performance-analysis-timer.threshold-decimal-precision">2</entry>
+	
+   <entry key="icosmo-timer.mode">RECALL</entry>
+	
+   <entry key="icosmo-timer.left-time-window">0</entry>
+   <entry key="icosmo.staleness-theshold">3.75</entry>
+   <entry key="icosmo.candidacy-theshold">7.5</entry>
+   <entry key="icosmo.modifier.contribution-decrease">1</entry>
+   <entry key="icosmo.modifier.contribution-increase">1</entry>
+   <entry key="icosmo.modifier.potential-contribution-decrease">1</entry>
+   <entry key="icosmo.modifier.potential-contribution-increase">1</entry>
+   <entry key="icosmo.desired-recall">0.10</entry>
+   <entry key="icosmo.desired-precision">0.10</entry>
+   <entry key="icosmo.default.contribution">5</entry>
+   <entry key="icosmo.default.potential-contribution">5</entry>
+   <entry key="icosmo.number.fault-involved-sensors">16</entry>
+   <entry key="icosmo.number.max-added-sensors">8</entry>
+   <entry key="icosmo.number.max-removed-sensors">1</entry>
+	
+	
+   <entry key="fault-descriptions.directory">input\fault-descriptions</entry>
+   <entry key="fault-description.single-sensor.behavior.config-path">input\fault-descriptions\fd_x_all_single_sensor_failures\global_behavior.xml</entry>
+	
+   <entry key="sensor-behavior.single-sensor-failure.config-path">input\fault-probabilities\fault_x_single_sensor_failures\fault_x_single_sensor_failures.xml</entry>
+   <entry key="sensor-behavior.directory"></entry>
+   <entry key="sensor-behavior.noise.config-path"></entry>
+   <entry key="sensor-behavior.amplification-factor"></entry>
+   <entry key="sensor-behavior.noise-amplification-factor"></entry>
+   <entry key="sensor-behavior.noise-pvalue-1"></entry>
+   <entry key="sensor-behavior.noise-pvalue-2"></entry>
+   <entry key="sensor-behavior.noise-type"></entry>
+   <entry key="sensor-behavior.sensor"></entry>
+   
+	
+   <entry key="noise.mean"></entry>
+   <entry key="noise.sd"></entry>
+   <entry key="noise.max"></entry>
+   <entry key="noise.min"></entry>
+   <entry key="noise.distribution"></entry>
+	
+   <entry key="output-timer.experiment-id">0</entry>
+   <entry key="output-timer.input.roc-script-file-name">input\run.r</entry>
+   <entry key="output-timer.output.directory">output</entry>
+   <entry key="output-timer.output.log-file-name">log-copy</entry>
+   <entry key="output-timer.output.config-file-name">config-copy.xml</entry>
+   <entry key="output-timer.output.roc-csv-file-name">simulation-output.csv</entry>
+   <entry key="output-timer.output.roc-image-file-name">roc-curve.png</entry>
+   <entry key="output-timer.intput-file-directory">input</entry>
+   <entry key="output-timer.history-output-file-name">history.ser</entry>
+   <entry key="output-timer.data-analysis-batch-script-file-path">input\run.bat</entry>
+</properties>
+   

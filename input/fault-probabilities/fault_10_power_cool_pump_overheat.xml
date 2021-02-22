@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <comment>configuration for icosmo thesis simulation</comment>
+
+   <entry key="fault.fault-generation-noise.config-file-path">input\fault-probabilities\fault_10_power_cool_pump_overheat\fault-noise.xml</entry>
+   <entry key="fault.repair-generation-noise.config-file-path">input\fault-probabilities\fault_10_power_cool_pump_overheat\repair-noise.xml</entry>
+   <entry key="fault.min-day-before-repair">1</entry>
+   <entry key="fault.fault-description.id">10</entry>
+	
+   
+</properties>

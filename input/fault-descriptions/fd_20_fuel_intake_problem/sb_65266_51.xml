@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <comment>Engine Throttle Valve 1 Position 1: fixed at around 3/4 closed </comment>
+ 
+   <entry key="sensor-behavior.noise.config-path">input\fault-descriptions\fd_20_fuel_intake_problem\sb_65266_51\white-noise.xml</entry>
+   <entry key="sensor-behavior.amplification-factor">0</entry>
+   <entry key="sensor-behavior.noise-amplification-factor">1</entry>
+   <entry key="sensor-behavior.noise-pvalue-1">0.1</entry>
+   <entry key="sensor-behavior.noise-pvalue-2">0.2</entry>
+   <entry key="sensor-behavior.noise-type">NEW</entry>
+   <entry key="sensor-behavior.sensor">(65266,51)</entry>
+
+</properties>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <comment>a fault description</comment>
+
+   <entry key="fault-description.id">20</entry>
+   <entry key="fault-description.label">fuel intake problem</entry>
+   <entry key="sensor-behavior.directory">input\fault-descriptions\fd_20_fuel_intake_problem</entry>
+	
+</properties>

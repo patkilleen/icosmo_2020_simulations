@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <comment>Aftertreatment 1 Diesel Particulate Filter Intake Temperature: increases </comment>
+ 
+   <entry key="sensor-behavior.noise.config-path">input\fault-descriptions\zero-white-noise\white-noise.xml</entry>
+   <entry key="sensor-behavior.amplification-factor">1</entry>
+   <entry key="sensor-behavior.noise-amplification-factor">0</entry>
+   <entry key="sensor-behavior.noise-pvalue-1">0</entry>
+   <entry key="sensor-behavior.noise-pvalue-2">0</entry>
+   <entry key="sensor-behavior.noise-type">MODIFY</entry>
+   <entry key="sensor-behavior.sensor">(64948,3242)</entry>
+
+</properties>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <comment>a fault description</comment>
+
+   <entry key="fault-description.id">6</entry>
+   <entry key="fault-description.label">broken accelerator pedal, it doesn't push all the way in</entry>
+   <entry key="sensor-behavior.directory">input\fault-descriptions\fd_6_broken_acc_pedal</entry>
+	
+</properties>

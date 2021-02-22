@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <comment>configuration for icosmo thesis simulation</comment>
+   <entry key="data-generation-sensor.white-noise.config-file-path">input\sensor-data-gen-behavior\wn-mean-100-sd-100\white-noise.xml</entry>
+   <entry key="data-generation-sensor.amp-factor-fleet-average.config-file-path">input\sensor-data-gen-behavior\basic-gen-params\amp-factor.xml</entry>
+   <entry key="data-generation-sensor.noise-amp-factor-fleet-average.config-file-path">input\sensor-data-gen-behavior\basic-gen-params\noise-amp-factor.xml</entry>
+   <entry key="data-generation-sensor.noise-pvalue1-fleet-average.config-file-path">input\sensor-data-gen-behavior\basic-gen-params\noise-pvalue-0.xml</entry>
+   <entry key="data-generation-sensor.noise-pvalue2-fleet-average.config-file-path">input\sensor-data-gen-behavior\basic-gen-params\noise-pvalue-1.xml</entry>
+   <entry key="data-generation-sensor.sensor">(64511,7975)</entry>
+</properties>

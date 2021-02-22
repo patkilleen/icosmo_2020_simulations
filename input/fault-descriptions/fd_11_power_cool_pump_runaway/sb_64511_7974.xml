@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <comment>Power Electronics Coolant Pump Motor Speed: increase </comment>
+ 
+   <entry key="sensor-behavior.noise.config-path">input\fault-descriptions\zero-white-noise\white-noise.xml</entry>
+   <entry key="sensor-behavior.amplification-factor">0.3</entry>
+   <entry key="sensor-behavior.noise-amplification-factor">0</entry>
+   <entry key="sensor-behavior.noise-pvalue-1">0</entry>
+   <entry key="sensor-behavior.noise-pvalue-2">0</entry>
+   <entry key="sensor-behavior.noise-type">MODIFY</entry>
+   <entry key="sensor-behavior.sensor">(64511,7974)</entry>
+
+</properties>

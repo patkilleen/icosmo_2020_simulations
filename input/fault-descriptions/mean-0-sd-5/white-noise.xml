@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <comment>white noise that should be used when no effect to white noise is made, with the MODIFY sensor behavior</comment>
+   <entry key="noise.mean">0</entry>
+   <entry key="noise.sd">5</entry>
+   <entry key="noise.max">0</entry>
+   <entry key="noise.min">0</entry>
+   <entry key="noise.distribution">NORMAL</entry>
+</properties>

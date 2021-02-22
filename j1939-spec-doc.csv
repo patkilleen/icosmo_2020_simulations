@@ -1,0 +1,2 @@
+PGN,Parameter Group Label,SPN Position in PGN,SPN,SPN Name,SPN Length,Resolution,Offset,Units,Data Range,Operational Range
+(empty) TODO: buy the J1939 specification document and extract the columns from it to parse them into this CSV format with the above columns

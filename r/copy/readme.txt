@@ -1,0 +1,1 @@
+~1 ordered legend by putting the icosmo and cosmo algs together

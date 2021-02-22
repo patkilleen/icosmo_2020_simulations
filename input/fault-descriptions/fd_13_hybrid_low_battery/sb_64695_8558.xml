@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <comment>Hybrid System Engine Stop-Start Remaining Percentage: decrease </comment>
+ 
+   <entry key="sensor-behavior.noise.config-path">input\fault-descriptions\fd_13_hybrid_low_battery\sb_64695_8558\white-noise.xml</entry>
+   <entry key="sensor-behavior.amplification-factor">0</entry>
+   <entry key="sensor-behavior.noise-amplification-factor">0</entry>
+   <entry key="sensor-behavior.noise-pvalue-1">0</entry>
+   <entry key="sensor-behavior.noise-pvalue-2">0</entry>
+   <entry key="sensor-behavior.noise-type">MODIFY</entry>
+   <entry key="sensor-behavior.sensor">(64695,8558)</entry>
+
+</properties>

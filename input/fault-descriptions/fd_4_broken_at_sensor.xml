@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <comment>a fault description</comment>
+
+   <entry key="fault-description.id">4</entry>
+   <entry key="fault-description.label">broken ambient air tempature sensor</entry>
+   <entry key="sensor-behavior.directory">input\fault-descriptions\fd_4_broken_at_sensor</entry>
+	
+</properties>

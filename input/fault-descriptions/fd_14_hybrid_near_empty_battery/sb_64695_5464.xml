@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <comment>Hybrid Battery Pack Remaining Charge: decrease </comment>
+ 
+   <entry key="sensor-behavior.noise.config-path">input\fault-descriptions\fd_14_hybrid_near_empty_battery\sb_64695_5464\white-noise.xml</entry>
+   <entry key="sensor-behavior.amplification-factor">0</entry>
+   <entry key="sensor-behavior.noise-amplification-factor">0</entry>
+   <entry key="sensor-behavior.noise-pvalue-1">0</entry>
+   <entry key="sensor-behavior.noise-pvalue-2">0</entry>
+   <entry key="sensor-behavior.noise-type">MODIFY</entry>
+   <entry key="sensor-behavior.sensor">(64695,5464)</entry>
+
+</properties>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <comment>a fault description</comment>
+
+   <entry key="fault-description.id">3</entry>
+   <entry key="fault-description.label">overheating engine</entry>
+   <entry key="sensor-behavior.directory">input\fault-descriptions\fd_engine_overheat</entry>
+	
+</properties>

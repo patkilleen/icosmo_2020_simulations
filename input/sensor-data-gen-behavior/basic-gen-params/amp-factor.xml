@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <comment>configuration for icosmo thesis simulation</comment>
+   <entry key="noise.mean">1</entry>
+   <entry key="noise.sd">0.05</entry>
+   <entry key="noise.max">1</entry>
+   <entry key="noise.min">1</entry>
+   <entry key="noise.distribution">NORMAL</entry>
+</properties>

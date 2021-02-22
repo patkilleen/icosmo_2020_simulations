@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <comment>a fault description</comment>
+
+   <entry key="fault-description.id">17</entry>
+   <entry key="fault-description.label">transmission failure, runaway</entry>
+   <entry key="sensor-behavior.directory">input\fault-descriptions\fd_17_transmission_runaway</entry>
+	
+</properties>
