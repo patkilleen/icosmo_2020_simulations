@@ -176,5 +176,6 @@
    <entry key="output-timer.intput-file-directory">input</entry>
    <entry key="output-timer.history-output-file-name">history.ser</entry>
    <entry key="output-timer.data-analysis-batch-script-file-path">input\run.bat</entry>
+   <entry key="output-timer.input.save-copy-of-input-folder-flag">false</entry>
 </properties>
    
