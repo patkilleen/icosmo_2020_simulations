@@ -61,8 +61,8 @@ public class TestAnomalyDetectionModelTimer extends AnomalyDetectionModelTimer{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 
-		algs.add(new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency));
-		algs.add(new COSMO(1,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency));
+		algs.add(new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency));
+		algs.add(new COSMO(1,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency));
 
 
 		boolean flag = false;
@@ -115,8 +115,8 @@ public class TestAnomalyDetectionModelTimer extends AnomalyDetectionModelTimer{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 
-		algs.add(new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency));
-		algs.add(new COSMO(1,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency));
+		algs.add(new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency));
+		algs.add(new COSMO(1,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency));
 
 
 		AnomalyDetectionModelTimer t = new AnomalyDetectionModelTimer(algs,updateFrequency);
@@ -142,8 +142,8 @@ public class TestAnomalyDetectionModelTimer extends AnomalyDetectionModelTimer{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 
-		algs.add(new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency));
-		algs.add(new COSMO(1,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency));
+		algs.add(new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency));
+		algs.add(new COSMO(1,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency));
 
 
 		AnomalyDetectionModelTimer t = new AnomalyDetectionModelTimer(algs,updateFrequency);
@@ -170,8 +170,8 @@ public class TestAnomalyDetectionModelTimer extends AnomalyDetectionModelTimer{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 
-		algs.add(new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency));
-		algs.add(new COSMO(1,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency));
+		algs.add(new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency));
+		algs.add(new COSMO(1,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency));
 
 
 		AnomalyDetectionModelTimer t = new AnomalyDetectionModelTimer(algs,updateFrequency);
@@ -238,10 +238,10 @@ public class TestAnomalyDetectionModelTimer extends AnomalyDetectionModelTimer{
 		int numSelectedSensors = 2;
 
 
-		COSMO c = new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		COSMO c = new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 		algs.add(c);
 		algs2.add(c);
-		c = new COSMO(1,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		c = new COSMO(1,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 		algs.add(c);
 		algs2.add(c);
 		
@@ -365,10 +365,10 @@ public class TestAnomalyDetectionModelTimer extends AnomalyDetectionModelTimer{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 
-		COSMO c = new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		COSMO c = new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 		algs.add(c);
 		algs2.add(c);
-		c = new COSMO(1,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		c = new COSMO(1,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 		algs.add(c);
 		algs2.add(c);
 
@@ -399,10 +399,10 @@ public class TestAnomalyDetectionModelTimer extends AnomalyDetectionModelTimer{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 
-		COSMO c = new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		COSMO c = new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 		algs.add(c);
 		algs2.add(c);
-		c = new COSMO(1,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		c = new COSMO(1,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 		algs.add(c);
 		algs2.add(c);
 

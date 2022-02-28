@@ -324,7 +324,12 @@ public class ReplayTimer extends Timer{
 		}
 		//iterate all thesholds, to build roc points for each threshold
 		double t = this.thresholds.get(thresholdIx);
-	
+		
+		//only log the threshold when printing sensor changes in icosmo
+		if(icosmoTimer.isLoggingSensorChanges()) {
+			Logger log = LoggerFactory.getInstance();
+			log.log_info("replaying COSMO zscores for ICOSMO. Threshold:  "+t);
+		}
 		replayHistoryForICOSMO(t);
 
 				

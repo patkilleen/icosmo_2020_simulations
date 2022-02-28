@@ -3,12 +3,16 @@ package phase.analysis.icosmo;
 import common.Sensor;
 import common.SensorInstance;
 import common.Vehicle;
+import phase.generation.cosmo.SensorInterest;
 
 public class ICOSMOSensorInstance extends SensorInstance{
 
 	//icosmo attributes
 	private double contribution;
 	private double potentialContribution;
+	
+	private SensorInterest interestingness;//the interestingness of the sensor isntance's sensro class
+	
 	
 	/**
 	 * Flag used to indicate whether this sensor was removed/added from 
@@ -51,6 +55,11 @@ public class ICOSMOSensorInstance extends SensorInstance{
 		
 	}
 
+	public SensorInterest getInterestingness() {
+		return interestingness;
+	}
+	
+	
 	public double getContribution() {
 		return contribution;
 	}
@@ -91,6 +100,9 @@ public class ICOSMOSensorInstance extends SensorInstance{
 		this.isCosmoSensor = isCosmoSensor;
 	}
 
+	public void setInterestingness(SensorInterest interestingness) {
+		this.interestingness = interestingness;
+	}
 	
 	@Override
 	protected void clearZValues(){

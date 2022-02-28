@@ -355,21 +355,21 @@ public class TestHistogram extends Histogram{
 		h2.addSample(96.0);
 		h2.addSample(87.0);
 		
-		Assert.assertEquals(0.0 ,h1.computeDistance(Histogram.DistanceMeasure.HELLIGNER,h2),0.001);
+		Assert.assertEquals(0.0 ,h1.computeDistance(Histogram.DistanceMeasure.HELLINGER,h2),0.001);
 		
 		h2.addSample(42.0);
-		Assert.assertEquals(false, compareDouble(h1.computeDistance(Histogram.DistanceMeasure.HELLIGNER,h2),0.0,0.001));
+		Assert.assertEquals(false, compareDouble(h1.computeDistance(Histogram.DistanceMeasure.HELLINGER,h2),0.0,0.001));
 		
 		h1.addSample(45.0);
 		
-		Assert.assertEquals(0.0 ,h1.computeDistance(Histogram.DistanceMeasure.HELLIGNER,h2),0.001);
+		Assert.assertEquals(0.0 ,h1.computeDistance(Histogram.DistanceMeasure.HELLINGER,h2),0.001);
 		
 		
-		double distCloser = h1.computeDistance(Histogram.DistanceMeasure.HELLIGNER,h2);
+		double distCloser = h1.computeDistance(Histogram.DistanceMeasure.HELLINGER,h2);
 		
 		h1.addSample(45.0);
 		
-		double distFurther = h1.computeDistance(Histogram.DistanceMeasure.HELLIGNER,h2);
+		double distFurther = h1.computeDistance(Histogram.DistanceMeasure.HELLINGER,h2);
 		
 		Assert.assertEquals(true,distCloser < distFurther);
 		//Assert.assertEquals(3 ,h.getFrequency(0));

@@ -16,6 +16,7 @@ import common.event.SensorStatusEvent;
 import common.event.TimerEvent;
 import common.exception.ConfigurationException;
 import common.exception.SimulationException;
+import phase.analysis.icosmo.ICOSMOSensorInstance;
 
 public class AnomalyDetectionAlgorithm extends Algorithm implements SensorCollection, Serializable{
 
@@ -23,6 +24,10 @@ public class AnomalyDetectionAlgorithm extends Algorithm implements SensorCollec
 	private SensorMap sensorMap;
 	
 	
+	public SensorMap getSensorMap() {
+		return sensorMap;
+	}
+
 	/**
 	 * 
 	 * @param id id of the algorithm
@@ -206,6 +211,6 @@ public class AnomalyDetectionAlgorithm extends Algorithm implements SensorCollec
 		return result;
 	}
 	
-
+	
 	
 }

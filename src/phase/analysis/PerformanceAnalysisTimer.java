@@ -1,13 +1,14 @@
 package phase.analysis;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import common.Algorithm;
 import common.Sensor;
+import common.SensorInstance;
+import common.SensorInstanceFactory;
+import common.SensorMap;
 import common.Util;
 import common.Vehicle;
 import common.event.HistoryEvent;
@@ -25,10 +26,12 @@ import common.exception.ConfigurationException;
 import common.log.Logger;
 import common.log.LoggerFactory;
 import common.synchronization.MultiThreadedTimer;
+import phase.generation.cosmo.AnomalyDetectionAlgorithm;
+import phase.generation.cosmo.COSMOSensorInstance;
 import phase.generation.history.FaultHistory;
 import phase.generation.history.SensorStatusHistory;
 
-public class PerformanceAnalysisTimer extends MultiThreadedTimer<Algorithm>{
+public class PerformanceAnalysisTimer extends MultiThreadedTimer<Algorithm> implements SensorInstanceFactory{
 
 	public static final int DEFAULT_NUMBER_OF_ROC_POINTS=4096;
 	//input
@@ -43,14 +46,16 @@ public class PerformanceAnalysisTimer extends MultiThreadedTimer<Algorithm>{
 	private int leftTimeWindow;
 	private int rightTimeWindow;
 	private int thresholdNumberDecimalPrecision;
+	private int zscoreWindowSize;
 	//associations
 	private List<Double> uniqueZScores;
 	private SensorStatusHistory ssHist;
 	private FaultHistory faultHistory;
 
-	public PerformanceAnalysisTimer(List<Algorithm> algorithms,int leftTimeWindow, int rightTimeWindow,int thresholdNumberDecimalPrecision) {
+	public PerformanceAnalysisTimer(List<Algorithm> algorithms,int leftTimeWindow, int rightTimeWindow,int thresholdNumberDecimalPrecision, int zscoreWindowSize) {
 		super(algorithms);	
-		init(leftTimeWindow,rightTimeWindow,thresholdNumberDecimalPrecision);
+		init(leftTimeWindow,rightTimeWindow,thresholdNumberDecimalPrecision,zscoreWindowSize);
+		
 	}
 	
 	/**
@@ -69,7 +74,7 @@ public class PerformanceAnalysisTimer extends MultiThreadedTimer<Algorithm>{
 		return rightTimeWindow;
 	}
 
-	protected void init(int leftTimeWindow, int rightTimeWindow,int thresholdNumberDecimalPrecision){
+	protected void init(int leftTimeWindow, int rightTimeWindow,int thresholdNumberDecimalPrecision,int zscoreWindowSize){
 		
 		if(leftTimeWindow < 0 || rightTimeWindow < 0 || thresholdNumberDecimalPrecision < 0){
 			throw new ConfigurationException("cannot create PerformanceAnalysisTimer, negative time windows");
@@ -77,6 +82,8 @@ public class PerformanceAnalysisTimer extends MultiThreadedTimer<Algorithm>{
 		this.rightTimeWindow = rightTimeWindow;
 		this.leftTimeWindow = leftTimeWindow;
 		this.thresholdNumberDecimalPrecision = thresholdNumberDecimalPrecision;
+		this.zscoreWindowSize = zscoreWindowSize;
+		
 	}
 
 	protected void init(int leftTimeWindow, int rightTimeWindow){
@@ -87,6 +94,7 @@ public class PerformanceAnalysisTimer extends MultiThreadedTimer<Algorithm>{
 		this.rightTimeWindow = rightTimeWindow;
 		this.leftTimeWindow = leftTimeWindow;
 		this.thresholdNumberDecimalPrecision = 10;
+	
 	}
 
 	public void initStreams(ROCCurvePointInputStream rocInputStream,PerformanceMetricOutputStream performanceMetricOutputStream,HistoryInputStream historyInputStream){
@@ -165,6 +173,23 @@ public class PerformanceAnalysisTimer extends MultiThreadedTimer<Algorithm>{
 	 */
 	public List<PerformanceMetricEvent> computeCOSMORocCurvePoints(Algorithm alg){
 
+		List<Algorithm> algorithms = this.getThreadPartitionKeys();
+		List<Algorithm> sensorMapList = new ArrayList<Algorithm>(algorithms.size());
+
+		for(Algorithm _alg: algorithms){
+			sensorMapList.add(_alg);
+		}
+		
+		
+		//we create a sensor map here to keep track of zscore mmoving average our selves, to allow reading a history to
+		//apply a different moving vverage window size
+		SensorMap sensorMap = new SensorMap(sensorMapList);
+		
+		
+		AnomalyDetectionAlgorithm alg2 = (AnomalyDetectionAlgorithm) alg;
+
+		
+		
 		 List<PerformanceMetricEvent> result = new ArrayList<PerformanceMetricEvent>(uniqueZScores.size());
 		 
 		//iterate all possible zscores and use them to set the sensor deviation threshold
@@ -176,6 +201,7 @@ public class PerformanceAnalysisTimer extends MultiThreadedTimer<Algorithm>{
 			int fn = 0;
 			Iterator<TimerEvent>  tit = ssHist.timerEventIterator(alg); 
 
+			sensorMap.init(alg2.getVehicles(), alg2.getSensors(), this);
 			//iterate all time ticks
 			while(tit.hasNext()){
 				TimerEvent timerEvent = tit.next();
@@ -195,16 +221,24 @@ public class PerformanceAnalysisTimer extends MultiThreadedTimer<Algorithm>{
 					Vehicle v = zscoreEvent.getVehicle();
 					Sensor s = zscoreEvent.getSensor();
 					
+					SensorInstance si = sensorMap.getSensorInstance(alg, v, s);
+					si.addZvalue(zscoreEvent.getZvalue());
+					
+					
+					double actualZscore = si.computeZScore();
 					//was there a fault whitin time window of zscore?
 					if(faultHistory.isSensorFaultInvolved(v, s, time, leftTimeWindow,rightTimeWindow)){
 
-						if(zscoreEvent.isDeviating(deviationThreshold)){
+						//if(zscoreEvent.isDeviating(deviationThreshold)){
+						//is deviating?
+						if(actualZscore <= deviationThreshold) {
 							tp++;
 						}else{
 							fn++;
 						}
 					}else{
-						if(zscoreEvent.isDeviating(deviationThreshold)){
+						//if(zscoreEvent.isDeviating(deviationThreshold)){
+						if(actualZscore <= deviationThreshold) {
 							fp++;
 						}else{
 							tn++;
@@ -217,6 +251,9 @@ public class PerformanceAnalysisTimer extends MultiThreadedTimer<Algorithm>{
 
 			PerformanceMetricEvent pmEventCOSMO  = createPerformanceMetricEvent(alg,tp,tn,fp,fn,deviationThreshold);
 			result.add(pmEventCOSMO);
+				
+				
+			
 			//performanceMetricOutputStream.write(alg, pmEventCOSMO);
 
 
@@ -294,7 +331,7 @@ return result;
 	}
 	protected void threadTick(TimerEvent timerEvent,Algorithm alg){
 
-
+		/*
 		//ocmpute the metrics and output roc curve point for ICOSMO algorithms
 		List<PerformanceMetricEvent> rocPoints = computeICOSMORocCurvePoints(alg);
 		
@@ -307,7 +344,7 @@ return result;
 			performanceMetricOutputStream.write(iCosmoAlg,pt);
 		}
 
-		
+		*/
 	}//end thread tick function
 
 
@@ -477,5 +514,12 @@ return result;
 		}
 		
 	}
+
+
+	@Override
+	public SensorInstance newInstance(Vehicle v, Sensor s) {
+		return new COSMOSensorInstance(s,v,zscoreWindowSize);
+	}
+	
 	
 }

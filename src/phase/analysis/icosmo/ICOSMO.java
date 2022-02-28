@@ -2,9 +2,12 @@ package phase.analysis.icosmo;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import cern.jet.random.Uniform;
+import cern.jet.random.engine.DRand;
 import common.Algorithm;
 import common.Sensor;
 import common.SensorInstance;
@@ -14,10 +17,13 @@ import common.Vehicle;
 import common.exception.ConfigurationException;
 import common.log.Logger;
 import common.log.LoggerFactory;
+import phase.generation.cosmo.AnomalyDetectionAlgorithm;
+import phase.generation.cosmo.SensorInterest;
 
 public class ICOSMO  implements SensorInstanceFactory{
 
-
+	private static final double SLEEP_INTERVAL = 0.1;//sleep for up to 0.1 seconds for rng seed 
+	
 	public static final int DEFAULT_SENSOR_CHANGED_RESULT_LIST_SIZE = 8;
 	
 	private double stalnessThreshold;
@@ -31,6 +37,9 @@ public class ICOSMO  implements SensorInstanceFactory{
 	
 	private double defaultContribution;
 	private double defaultPotentialContribution;
+	
+	private double sensorInterestThreshold;
+	
 	/*
 	 *  The desired recall the set will have with respect to estimating fault-involved sensors
 	 */
@@ -70,16 +79,43 @@ public class ICOSMO  implements SensorInstanceFactory{
 
 	private SensorMap sensorMap;
 	
+	//random number generator
+	private Uniform randomUniform;
 	
 	public ICOSMO( double stalnessThreshold, double candicacyThreshold, double contributionDecreaseMod,
 			double contributionIncreaseMod, double potentialContrDecreaseMod, double potentialContrIncreaseMod,double desiredRecall,double desiredPrecision,
-			double defaultContribution, double defaultPotentialContribution,int numFaultInvolvedSensorEstimation,int zValueWindowSize, int maxNumberAddedSensors, int maxNumberRemovedSensors) {
+			double defaultContribution, double defaultPotentialContribution,int numFaultInvolvedSensorEstimation,int zValueWindowSize, double sensorInterestThreshold,int maxNumberAddedSensors, int maxNumberRemovedSensors) {
+		super();
+		init( stalnessThreshold,  candicacyThreshold,  contributionDecreaseMod,
+				 contributionIncreaseMod,  potentialContrDecreaseMod,  potentialContrIncreaseMod, desiredRecall, desiredPrecision,
+				 defaultContribution,  defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,sensorInterestThreshold,maxNumberAddedSensors,maxNumberRemovedSensors);
+	}
+
+	/**
+	 * constructor without the sensorInterestThreshold parameter to satisfy test cases
+	 * @param stalnessThreshold
+	 * @param candicacyThreshold
+	 * @param contributionDecreaseMod
+	 * @param contributionIncreaseMod
+	 * @param potentialContrDecreaseMod
+	 * @param potentialContrIncreaseMod
+	 * @param desiredRecall
+	 * @param desiredPrecision
+	 * @param defaultContribution
+	 * @param defaultPotentialContribution
+	 * @param numFaultInvolvedSensorEstimation
+	 * @param zValueWindowSize
+	 * @param maxNumberAddedSensors
+	 * @param maxNumberRemovedSensors
+	 */
+	public ICOSMO( double stalnessThreshold, double candicacyThreshold, double contributionDecreaseMod,
+			double contributionIncreaseMod, double potentialContrDecreaseMod, double potentialContrIncreaseMod,double desiredRecall,double desiredPrecision,
+			double defaultContribution, double defaultPotentialContribution,int numFaultInvolvedSensorEstimation,int zValueWindowSize,int maxNumberAddedSensors, int maxNumberRemovedSensors) {
 		super();
 		init( stalnessThreshold,  candicacyThreshold,  contributionDecreaseMod,
 				 contributionIncreaseMod,  potentialContrDecreaseMod,  potentialContrIncreaseMod, desiredRecall, desiredPrecision,
 				 defaultContribution,  defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,maxNumberAddedSensors,maxNumberRemovedSensors);
 	}
-
 	/**
 	 * empty constructor for subclass flexibility
 	 */
@@ -164,12 +200,47 @@ public class ICOSMO  implements SensorInstanceFactory{
 	public void setCandicacyThreshold(double candicacyThreshold) {
 		this.candicacyThreshold = candicacyThreshold;
 	}
-
+	
+	public void setSensorInterestThreshold(double t) {
+		if(t < 0 || t >1) {
+			throw new IllegalArgumentException("threshold expected between 0 and 1 but was "+t);
+		}
+		sensorInterestThreshold = t;
+		
+	}
+	
+/**
+ * Constructor without the _sensorInterestThreshold argument to make the test cases satisfied (default value used_)
+ * @param stalnessThreshold
+ * @param candicacyThreshold
+ * @param contributionDecreaseMod
+ * @param contributionIncreaseMod
+ * @param potentialContrDecreaseMod
+ * @param potentialContrIncreaseMod
+ * @param desiredRecall
+ * @param desiredPrecision
+ * @param defaultContribution
+ * @param defaultPotentialContribution
+ * @param numFaultInvolvedSensorEstimation
+ * @param zValueWindowSize
+ * @param maxNumberAddedSensors
+ * @param maxNumberRemovedSensors
+ */
 	protected void init(double stalnessThreshold, double candicacyThreshold, double contributionDecreaseMod,
 			double contributionIncreaseMod, double potentialContrDecreaseMod, double potentialContrIncreaseMod,double desiredRecall,double desiredPrecision,
-			double defaultContribution, double defaultPotentialContribution, int numFaultInvolvedSensorEstimation,int zValueWindowSize, int maxNumberAddedSensors, int maxNumberRemovedSensors) {
+			double defaultContribution, double defaultPotentialContribution, int numFaultInvolvedSensorEstimation,int zValueWindowSize,int maxNumberAddedSensors, int maxNumberRemovedSensors) {
 		
-		if( desiredRecall < 0 || desiredRecall > 1 || desiredPrecision < 0 || desiredPrecision > 1 || numFaultInvolvedSensorEstimation <=0 || zValueWindowSize <=0 || maxNumberAddedSensors<0 || maxNumberRemovedSensors< 0){
+		double _sensorInterestThreshold=0;
+		init(stalnessThreshold, candicacyThreshold, contributionDecreaseMod,
+				contributionIncreaseMod, potentialContrDecreaseMod, potentialContrIncreaseMod,desiredRecall,desiredPrecision,
+				defaultContribution, defaultPotentialContribution, numFaultInvolvedSensorEstimation,zValueWindowSize,_sensorInterestThreshold,  maxNumberAddedSensors,  maxNumberRemovedSensors);
+
+	}
+	protected void init(double stalnessThreshold, double candicacyThreshold, double contributionDecreaseMod,
+			double contributionIncreaseMod, double potentialContrDecreaseMod, double potentialContrIncreaseMod,double desiredRecall,double desiredPrecision,
+			double defaultContribution, double defaultPotentialContribution, int numFaultInvolvedSensorEstimation,int zValueWindowSize,double sensorInterestThreshold, int maxNumberAddedSensors, int maxNumberRemovedSensors) {
+		
+		if( desiredRecall < 0 || desiredRecall > 1 || desiredPrecision < 0 || desiredPrecision > 1 || numFaultInvolvedSensorEstimation <=0 || zValueWindowSize <=0 || maxNumberAddedSensors<0 || maxNumberRemovedSensors< 0 || sensorInterestThreshold < 0 || sensorInterestThreshold > 1){
 			throw new ConfigurationException("cannot create icosmo instance, illegal argument, either out of bounds or null.");
 		}
 		this.stalnessThreshold = stalnessThreshold;
@@ -186,9 +257,18 @@ public class ICOSMO  implements SensorInstanceFactory{
 		this.zValueWindowSize = zValueWindowSize;
 		this.maxNumberAddedSensors = maxNumberAddedSensors;
 		this.maxNumberRemovedSensors = maxNumberRemovedSensors;
+		this.sensorInterestThreshold = sensorInterestThreshold;
 		
+		
+		DRand uniformRandomEngine = null;
+		
+		//sleep for random duration so the seed is random
+		try{Thread.sleep((long)(Math.random() * SLEEP_INTERVAL));}catch(InterruptedException e){}
+		
+		uniformRandomEngine = new DRand(new Date());
+		randomUniform = new Uniform(0,1,uniformRandomEngine);
 	}
-	
+
 	/**
 	 * initializes the sensor map and the sensor selection changes map
 	 * @param icosmoMap initialized sensor map
@@ -280,7 +360,32 @@ public class ICOSMO  implements SensorInstanceFactory{
 
 		//calculate number of actual fault-involved sensors that will be estimated
 		//given the desired recall 
-		int numPSensors = (int) Math.floor(desiredRecall * (double)p.size());
+		int numPSensors = 0;
+		
+		double quotient = desiredRecall * (double)p.size();
+		
+		//does the recall perfectly partition the set of fault invovled sensors?
+		//e.g., 0.3 recall, with 100 fault invnovled sensors would lead to 30
+		//but 0.3 recall and 99 sensors woudl lead to 29.7, which isn't an int		
+		if ((quotient % 1) == 0) {
+			numPSensors = (int) quotient;//simple case where partition is perfect size
+		}else {
+			
+			// in the case where we have a fraction of a fault-inovled sensor
+			//we add all sensors (29 in the above example), and then add the last sensor
+			//with some probability (0.7 in above example)
+			numPSensors = (int) Math.floor(quotient);
+			
+			//pvalue of adding the extra fault invovled sensor
+			double pvalue = quotient- numPSensors;
+			
+			double rng = randomUniform.nextDouble();
+			
+			if(rng >= pvalue){
+				numPSensors++;
+			}
+		}
+		
 		int numPNotSensors = numFaultInvolvedSensorEstimation - numPSensors;
 
 		return iraHelper(p,pNot,numPSensors,numPNotSensors);
@@ -295,10 +400,45 @@ public class ICOSMO  implements SensorInstanceFactory{
 	 */
 	public List<Sensor> iraPrecision(List<Sensor> p, List<Sensor> pNot){
 
+		//as precision has to do with the size of the dataset returned, we have to avoid
+		//the case when the number of fault invovled sensors desired is larger than the number
+		//of fauult invovled sensors
+		int _numFaultInvolvedSensorEstimation = Math.min(p.size(), numFaultInvolvedSensorEstimation);
 		//calculate number of actual fault-involved sensors that will be estimated
 		//given the desired recall 
-		int numPSensors = (int) Math.floor(desiredPrecision * numFaultInvolvedSensorEstimation);
-		int numPNotSensors = numFaultInvolvedSensorEstimation - numPSensors;
+		//int numPSensors = (int) Math.floor(desiredPrecision * _numFaultInvolvedSensorEstimation);
+		
+
+		//calculate number of actual fault-involved sensors that will be estimated
+		//given the desired recall 
+		int numPSensors = 0;
+		
+		double quotient = desiredPrecision * _numFaultInvolvedSensorEstimation;
+		
+		//does the recall perfectly partition the set of fault invovled sensors?
+		//e.g., 0.3 recall, with 100 fault invnovled sensors would lead to 30
+		//but 0.3 recall and 99 sensors woudl lead to 29.7, which isn't an int		
+		if ((quotient % 1) == 0) {
+			numPSensors = (int) quotient;//simple case where partition is perfect size
+		}else {
+			
+			// in the case where we have a fraction of a fault-inovled sensor
+			//we add all sensors (29 in the above example), and then add the last sensor
+			//with some probability (0.7 in above example)
+			numPSensors = (int) Math.floor(quotient);
+			
+			//pvalue of adding the extra fault invovled sensor
+			double pvalue = quotient- numPSensors;
+			
+			double rng = randomUniform.nextDouble();
+			
+			if(rng >= pvalue){
+				numPSensors++;
+			}
+		}
+		
+		
+		int numPNotSensors = _numFaultInvolvedSensorEstimation - numPSensors;
 
 		return iraHelper(p,pNot,numPSensors,numPNotSensors);
 	}
@@ -333,8 +473,7 @@ public class ICOSMO  implements SensorInstanceFactory{
 				faultInvolvedSensor.setContribution(contribution);
 				//sensor has become stale?
 				if(isSensorStale(alg,faultInvolvedSensor)){
-					removeFromCOSMO(alg,faultInvolvedSensor);
-					sensorSelectionChange = true;
+					sensorSelectionChange = removeFromCOSMO(alg,faultInvolvedSensor);					 
 				}
 			}
 		
@@ -354,8 +493,7 @@ public class ICOSMO  implements SensorInstanceFactory{
 				faultInvolvedSensor.setPotentialContribution(potContribution);
 				//sensor has become a candidate?
 				if(isSensorCandidate(alg,faultInvolvedSensor)){
-					addToCOSMO(alg,faultInvolvedSensor);
-					sensorSelectionChange = true;
+					sensorSelectionChange = addToCOSMO(alg,faultInvolvedSensor);					
 				}
 			}
 			
@@ -364,7 +502,14 @@ public class ICOSMO  implements SensorInstanceFactory{
 		return sensorSelectionChange;
 	}//end ajust sensor ranking function
 	
-	protected void addToCOSMO(Algorithm alg, Sensor sensorClass){
+	/**
+	 * adds a sensor to COSMO sensors, returning true when the sensor was added and false if it wasn't 
+	 * due to maximum number of candidate sensor COSMO sensor additions reached  
+	 * @param alg
+	 * @param sensorClass
+	 * @return
+	 */
+	protected boolean addToCOSMO(Algorithm alg, Sensor sensorClass){
 		
 		if(sensorMap==null){
 			throw new ConfigurationException("cannot add sensor to cosmo selected sensors, icosmo not initialized");
@@ -373,16 +518,19 @@ public class ICOSMO  implements SensorInstanceFactory{
 		int sensorSelectionCount = this.getSensorSelectionCount(alg);
 		//make sure not exceeding limit of sensor selection changes (can't add more cosmo sensors than max)
 		if(sensorSelectionCount >= maxNumberAddedSensors){
-			return;
+			return false;
 		}
 		
 		addToCOSMOHelper(alg,sensorClass);
 		this.incrementSensorSelectionCount(alg);
 		
+		return true;
+		
 	}
 
 	protected void addToCOSMOHelper(Algorithm alg, Sensor sensorClass) {
 		List<SensorInstance> instances = sensorMap.getSensorInstances(alg,sensorClass);
+
 		//add all sensor instances of given class to cosmo selected sensors
 		for(SensorInstance _s : instances){
 					
@@ -390,18 +538,34 @@ public class ICOSMO  implements SensorInstanceFactory{
 			
 			//already a cosmo sensor?
 			if(s.isCosmoSensor()){
+				Logger log = LoggerFactory.getInstance();
+				log.log_warning("adding a COSMO sensor to COSMO sensors");
+				
+				//could this happend because 2 repairs happend on same tick involving the same senosr, where a sensor was a candidate
+				//then asdded as comso sensor, then next repair also flags it
+				//make a) flagged as cadidate and added, then cleared contributions, b) another fault occured and then it was considered stale even if just added? c) then 3rd repair made it candidate again
+				//likely only an issue if 1 repair triggers threshold of ICOSMO exceed?
 				return;//do nothing, all other instance are cosmo sensor as well
 			}
 			
+		
 			s.setCosmoSensor(true);
 		//	throw new IllegalStateException("not done");
 			//s.setHasSensorSelectionChanged(true);//this won't be required, just clear zvalue queue in instance 
 			s.setContribution(defaultContribution);
 			s.setPotentialContribution(defaultPotentialContribution);
 		}
+
 	}
 
-	protected void removeFromCOSMO(Algorithm alg, Sensor sensorClass){
+	/**
+	 * removes a sensor from COSMO sensors, returning true when the sensor was removed and false if it wasn't 
+	 * due to maximum number of stale COSMO sensor removals reached
+	 * @param alg
+	 * @param sensorClass
+	 * @return
+	 */
+	protected boolean removeFromCOSMO(Algorithm alg, Sensor sensorClass){
 		
 		if(sensorMap==null){
 			throw new ConfigurationException("cannot remove sensor from cosmo selected sensors, icosmo not initialized");
@@ -410,22 +574,28 @@ public class ICOSMO  implements SensorInstanceFactory{
 		int sensorSelectionCount = this.getSensorSelectionCount(alg);
 		//make sure not exceeding limit of sensor selection changes (can't add more cosmo sensors than max)
 		if(sensorSelectionCount <= (-maxNumberRemovedSensors)){
-			return;
+			return false;
 		}
 		
 		removeFromCOSMOHelper(alg,sensorClass);
 		
 		this.decrementSensorSelectionCount(alg);
+		
+		return true;
 	}
 
 	protected void removeFromCOSMOHelper(Algorithm alg, Sensor sensorClass) {
 		List<SensorInstance> instances = sensorMap.getSensorInstances(alg,sensorClass);
+		
 		//remove all sensor instances of given class from cosmo selected sensors
 		for(SensorInstance _s : instances){
 			ICOSMOSensorInstance s = (ICOSMOSensorInstance) _s;
 			
 			//already a non-cosmo sensor?
 			if(!s.isCosmoSensor()){
+				Logger log = LoggerFactory.getInstance();
+
+				log.log_warning("removing a candidate sensor from COSMO sensors");
 				return;//do nothing, all other instance are not a cosmo sensor as well
 			}
 			
@@ -436,7 +606,6 @@ public class ICOSMO  implements SensorInstanceFactory{
 			s.setPotentialContribution(defaultPotentialContribution);
 			s.setContribution(defaultContribution);
 		}
-		
 		
 	}
 
@@ -473,6 +642,24 @@ public class ICOSMO  implements SensorInstanceFactory{
 		if(sensorMap==null){
 			throw new ConfigurationException("cannot check sensor candicacy to cosmo selected sensors, icosmo not initialized");
 		}
+		
+		SensorInterest si = getSensorInterestingness(alg,sensorClass);
+		
+		if(si==null) {
+			Logger log = LoggerFactory.getInstance();
+
+			log.log_error("null sensor interestingness while checking for candidate sensor");
+			return false;//do nothing, all other instance are not a cosmo sensor as well
+		}
+		
+		//samller values is more interesting
+		double interestingness = si.computeInterestValue();
+		
+		//sensor isn't interesting enough to consider as candidate?
+		if (interestingness > sensorInterestThreshold) {
+			return false;
+		}
+		
 		List<SensorInstance> instances = sensorMap.getSensorInstances(alg,sensorClass);
 		
 		//compute average and check thershold
@@ -488,6 +675,28 @@ public class ICOSMO  implements SensorInstanceFactory{
 		
 	}
 	
+	/**
+	 * REturns the sensor interestginess.
+	 * @param alg
+	 * @param sensorClass
+	 * @return
+	 */
+	public SensorInterest getSensorInterestingness(Algorithm alg, Sensor sensorClass) {
+		
+		if(! (alg instanceof AnomalyDetectionAlgorithm)) {
+			return null;
+		}
+		AnomalyDetectionAlgorithm _alg = (AnomalyDetectionAlgorithm) alg;
+		SensorMap _sensorMap = _alg.getSensorMap();
+		List<SensorInstance> instances = _sensorMap.getSensorInstances(alg,sensorClass);
+		
+		
+		//all instances of a class share the same interest, so just pick first in list
+		SensorInstance s = instances.get(0);
+		ICOSMOSensorInstance is = (ICOSMOSensorInstance) s;
+		return  is.getInterestingness();
+		
+	}
 	/**
 	 * Resets the attributes of icosmo sensor instance to default
 	 * @param i instance to reset

@@ -29,6 +29,7 @@ public class OutputTimer extends Timer {
 
 	private final static String CSV_HEADER_ROW = "experiment id,algorithm_id,algorith_name,tp,tn,fp,fn,tp rate,fp rate,threshold,accuracy,fscore";
 	private static final String NEW_LINE = "\r\n";
+	private static final String COMMA = ",";
 	//private static final String R_SCRIPT_COMMAND = "C:\\Users\\Not admin\\Documents\\R\\R-3.6.0\\bin\\Rscript.exe ";
 	//private static final String R_SCRIPT_COMMAND = "C:\\Dev\\icosmo_sim\\input\\run.bat";
 	//private static final String R_SCRIPT_COMMAND = "rscript ";
@@ -93,21 +94,23 @@ public class OutputTimer extends Timer {
 	//the directory with all input files to make a copy of
 	private String inputDirectory;
 	
+	private boolean copyInputFolderInOutpufFlag;
 	//assosications
 	private List<Algorithm> algorithms;
 	private String inputBatchFilePath;
 
 	
 	
+	
 
 	public OutputTimer(PerformanceMetricInputStream performanceMetricInputStream,int experimentId,
 			String inputConfigFilePath, String inputLogFilePath, String outputFileDirectory, String outputLogFileName,
 			String outputConfigFileName, String outputRocCSVFileName, String inputRocRScriptFilePath,
-			String outputRocCurveImageFileName, String inputDirectory,String historyOuputFileName, String inputBatchFilePath,List<Algorithm> algorithms) {
+			String outputRocCurveImageFileName, String inputDirectory,String historyOuputFileName, String inputBatchFilePath,List<Algorithm> algorithms,boolean copyInputFolderInOutpufFlag) {
 		init(performanceMetricInputStream, experimentId,
 				 inputConfigFilePath, inputLogFilePath, outputFileDirectory, outputLogFileName,
 				 outputConfigFileName, 	outputRocCSVFileName, inputRocRScriptFilePath,
-				 outputRocCurveImageFileName, inputDirectory,historyOuputFileName, inputBatchFilePath,algorithms);
+				 outputRocCurveImageFileName, inputDirectory,historyOuputFileName, inputBatchFilePath,algorithms,copyInputFolderInOutpufFlag);
 	}
 
 	/**
@@ -120,7 +123,7 @@ public class OutputTimer extends Timer {
 	protected void init(PerformanceMetricInputStream performanceMetricInputStream, int experimentId,
 			String inputConfigFilePath, String inputLogFilePath, String outputFileDirectory, String outputLogFileName,
 			String outputConfigFileName, String outputRocCSVFileName, String inputRocRScriptFilePath,
-			String outputRocCurveImageFileName, String inputDirectory,String historyOuputFileName,  String inputBatchFilePath,List<Algorithm> algorithms) {
+			String outputRocCurveImageFileName, String inputDirectory,String historyOuputFileName,  String inputBatchFilePath,List<Algorithm> algorithms,boolean copyInputFolderInOutpufFlag) {
 		if(algorithms == null || algorithms.isEmpty()){
 			throw new ConfigurationException("cannot crate output timer due to empty algorithms");
 		}
@@ -148,6 +151,7 @@ public class OutputTimer extends Timer {
 		this.historyOuputFileName = historyOuputFileName;
 		this.inputBatchFilePath = inputBatchFilePath;
 		this.algorithms = algorithms;
+		this.copyInputFolderInOutpufFlag = copyInputFolderInOutpufFlag;
 	}
 	
 	public void setIsSavingHistory(boolean f){
@@ -341,11 +345,13 @@ public class OutputTimer extends Timer {
 			Path simulationOutputDir =  createOutputDirecotry(); 
 
 			
-			//create directory to dump copy of input files
-			Path inputFileDestDir = Paths.get(simulationOutputDir.toString(),"input");
-		//	FileHandler.mkdir(inputFileDestDir);
-			FileHandler.copyFolder(Paths.get(this.getInputFilesDirectory()).toFile(), inputFileDestDir.toFile());
-			
+			//we only output a copy of input files if flag allows us to do so (we can save disk space by not copying input folder) 
+			if(copyInputFolderInOutpufFlag) {
+				//create directory to dump copy of input files
+				Path inputFileDestDir = Paths.get(simulationOutputDir.toString(),"input");
+			//	
+				FileHandler.copyFolder(Paths.get(this.getInputFilesDirectory()).toFile(), inputFileDestDir.toFile());
+			}
 			//copy configuration file to output dir
 			//Path inputConfig = Paths.get(this.inputConfigFilePath);
 			//Path outputConfig = Paths.get(simulationOutputDir.toString(),outputConfigFileName);
@@ -396,16 +402,17 @@ return null;
 
 		String result = "";
 		//private final static String CSV_HEADER_ROW = "experiment id,algorithm,tp,tn,fp,fn,tp rate,fp rate,threshold,accuracy,fscore";
-		result+= this.experimentId + ",";
-		result+=e.getAlgorithm().getId() + ",";
-		result+=e.getAlgorithm().getName()+ ",";
-		result+=e.getTruePositiveCount() + ",";
-		result+=e.getTrueNegativeCount() + "," ;
-		result+= e.getFalsePositiveCount() + ",";
-		result+=e.getFalseNegativeCount() + ",";
-		result+=e.getTruePositiveRate()+",";
-		result+=e.getFalsePositiveRate() + ",";
-		result+=e.getAccuracy() + ",";
+		result+= this.experimentId + COMMA;
+		result+=e.getAlgorithm().getId() + COMMA;
+		result+=e.getAlgorithm().getName()+ COMMA;
+		result+=e.getTruePositiveCount() + COMMA;
+		result+=e.getTrueNegativeCount() + COMMA;
+		result+= e.getFalsePositiveCount() + COMMA;
+		result+=e.getFalseNegativeCount() + COMMA;
+		result+=e.getTruePositiveRate()+COMMA;
+		result+=e.getFalsePositiveRate() + COMMA;
+		result+=e.getVaryingThreshold() + COMMA;
+		result+=e.getAccuracy() + COMMA;
 		result+= e.getFscore();
 		result+=NEW_LINE;
 

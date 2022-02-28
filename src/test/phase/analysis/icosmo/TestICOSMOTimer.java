@@ -1529,6 +1529,7 @@ public class TestICOSMOTimer extends ICOSMOTimer{
 		double defaultPotentialContribution=7;
 		int numFaultInvolvedSensorEstimation=5;
 		int zValueWindowSize = 30;
+		double sensorInterestThreshold  = 0.4;
 		ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
 				potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
 
@@ -1627,6 +1628,7 @@ public class TestICOSMOTimer extends ICOSMOTimer{
 		double defaultPotentialContribution=5;
 		int numFaultInvolvedSensorEstimation=2;
 		int zValueWindowSize = 30;
+		double sensorInterestThreshold  = 0.4;
 		ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
 				potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
 
@@ -1791,6 +1793,7 @@ public class TestICOSMOTimer extends ICOSMOTimer{
 		double defaultPotentialContribution=5;
 		int numFaultInvolvedSensorEstimation=2;
 		int zValueWindowSize = 30;
+		double sensorInterestThreshold  = 0.4;
 		ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
 				potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
 
@@ -1956,6 +1959,7 @@ public class TestICOSMOTimer extends ICOSMOTimer{
 		double defaultPotentialContribution=5;
 		int numFaultInvolvedSensorEstimation=2;
 		int zValueWindowSize = 30;
+		double sensorInterestThreshold  = 0.4;
 		ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
 				potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
 
@@ -2158,6 +2162,7 @@ public class TestICOSMOTimer extends ICOSMOTimer{
 		double defaultPotentialContribution=5;
 		int numFaultInvolvedSensorEstimation=2;
 		int zValueWindowSize = 30;
+		double sensorInterestThreshold  = 0.4;
 		ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
 				potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
 
@@ -2295,6 +2300,7 @@ public class TestICOSMOTimer extends ICOSMOTimer{
 			double defaultPotentialContribution=5;
 			int numFaultInvolvedSensorEstimation=2;
 			int zValueWindowSize = 30;
+			double sensorInterestThreshold  = 0.4;
 			ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
 					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
 
@@ -2484,6 +2490,7 @@ public class TestICOSMOTimer extends ICOSMOTimer{
 			double defaultPotentialContribution=5;
 			int numFaultInvolvedSensorEstimation=2;
 			int zValueWindowSize = 30;
+			double sensorInterestThreshold  = 0.4;
 			ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
 					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
 
@@ -2674,6 +2681,7 @@ public class TestICOSMOTimer extends ICOSMOTimer{
 			double defaultPotentialContribution=5;
 			int numFaultInvolvedSensorEstimation=2;
 			int zValueWindowSize = 30;
+			double sensorInterestThreshold  = 0.4;
 			ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
 					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
 
@@ -2878,6 +2886,7 @@ public class TestICOSMOTimer extends ICOSMOTimer{
 			double defaultPotentialContribution=5;
 			int numFaultInvolvedSensorEstimation=2;
 			int zValueWindowSize = 30;
+			double sensorInterestThreshold  = 0.4;
 			ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
 					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
 
@@ -3084,6 +3093,7 @@ public class TestICOSMOTimer extends ICOSMOTimer{
 			double defaultPotentialContribution=5;
 			int numFaultInvolvedSensorEstimation=2;
 			int zValueWindowSize = 30;
+			double sensorInterestThreshold  = 0.4;
 			ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
 					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
 

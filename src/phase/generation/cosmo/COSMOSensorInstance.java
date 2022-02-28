@@ -11,6 +11,8 @@ import common.exception.ConfigurationException;
 
 public class COSMOSensorInstance extends SensorInstance {
 
+	private SensorInterest interestingness;//the interestingness of the sensor isntance's sensro class
+
 	private boolean isCOSMOSensor;
 
 	private MinMaxPair minMaxPair;
@@ -21,12 +23,18 @@ public class COSMOSensorInstance extends SensorInstance {
 		super(aPgn, aSpn, vehicle,zvalueWindowSize);	
 		//creates data structures/model to store/represent sensor data
 		this.model = new Model();
+	
 	}
 
 	public COSMOSensorInstance(Sensor s, Vehicle vehicle, int zvalueWindowSize) {
 		super(s, vehicle,zvalueWindowSize);
 		//creates data structures/model to store/represent sensor data
 		this.model = new Model();
+		
+	}
+	
+	public SensorInterest getInterestingness() {
+		return interestingness;
 	}
 	
 	//note that zscore not used in cosmo algorithms (they computed and output, without storing)
@@ -52,6 +60,9 @@ public class COSMOSensorInstance extends SensorInstance {
 		this.minMaxPair = minMaxPair;
 	}
 
+	public void setInterestingness(SensorInterest interestingness) {
+		this.interestingness = interestingness;
+	}
 	
 	
 }

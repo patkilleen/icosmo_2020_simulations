@@ -3,12 +3,14 @@
 
 package phase.generation.cosmo;
 
+import java.io.Serializable;
+
 import common.Sensor;
 import common.exception.ConfigurationException;
 
 // line 76 "model.ump"
 // line 157 "model.ump"
-public class SensorInterest implements Comparable<SensorInterest>
+public class SensorInterest implements Comparable<SensorInterest>, Serializable
 {
 
   //------------------------
@@ -73,6 +75,20 @@ public void setStability(double stability) {
 }
 
 
+	/**
+	 * 1- ne: cause want to have smallest number represent more interestingess. ne is [0,1]
+	 * here smallest is most interesting
+	*ne of 1 is most interesting, 0 is not interesting
+	*stability 1 is not interesting, 0 is most interesting
+	*so (1-ne): 0 is most interesting, 1 is least inteesting
+	*so (1-ne) + stability: 0 is most interesting and 2 least interesting
+	 * @return interest value between 0 and 1
+	 */
+	//
+	public double computeInterestValue() {
+		return ((1-this.normalizedEntropy) + this.stability)/2.0;//divide by 2 to make the value of intereste between 0 and 1
+	}
+
 /**
    * Compares two sensor interests, having higher normalized entropy and lower stability  be the "smallest"
    * @param o The other sensor interest
@@ -81,14 +97,9 @@ public void setStability(double stability) {
    */
   public int compareTo(SensorInterest o){
 	 
-	  //1- ne: cause want to have smallest number represent more interestingess. ne is [0,1]
-	  //here smallest is most interesting
-	  //ne of 1 is most interesting, 0 is not interesting
-	  //stability 1 is not interesting, 0 is most interesting
-	  //so (1-ne): 0 is most interesting, 1 is least inteesting
-	  //so (1-ne) + stability: 0 is most interesting and 2 least interesting
-	  double thisInterest = (1-this.normalizedEntropy) + this.stability;
-	  double otherInterest = (1-o.normalizedEntropy) + o.stability;
+	 
+	  double thisInterest = computeInterestValue();
+	  double otherInterest = o.computeInterestValue();
 	  
 	 if(thisInterest == otherInterest){
 		 return 0;

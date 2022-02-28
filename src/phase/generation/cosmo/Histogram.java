@@ -11,7 +11,7 @@ public class Histogram {
 	private double minValue;
 	private double binWidth;
 	
-	public enum DistanceMeasure{HELLIGNER,EUCLIDEAN,CITY_BLOCK,GOWER,SQUARED_EUCLIDEAN,INTERSECTION,FIDELITY,MATUSITA,COSINE,BHATTACHARYYA};
+	public enum DistanceMeasure{HELLINGER,EUCLIDEAN,CITY_BLOCK,GOWER,SQUARED_EUCLIDEAN,INTERSECTION,FIDELITY,MATUSITA,COSINE,BHATTACHARYYA};
 	
 	/**
 	 * Constructor that creates a histogram, which computes the max and min values from dataset.
@@ -312,7 +312,7 @@ public class Histogram {
 		/*
 		 * TODO: implement all the other distances from the paper I found.
 		 */
-		case HELLIGNER:
+		case HELLINGER:
 			double res = 0;
 			int i = 0;
 			for(i = 0; i < h1Bins.length; i++){

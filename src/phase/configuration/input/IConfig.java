@@ -19,10 +19,11 @@ import java.util.Properties;
 public interface IConfig {
 	
 	public static final String PROPERTY_SIMULATION_LOADER_ROOT_DIRECTORY="global.simulation-loader.root-directory";
+	public static final String PROPERTY_SIMULATION_LOADER_OS="global.simulation-loader.OS"; //LINUX or WINDOWS
 	public static final String PROPERTY_SIMULATION_LOADER_ANALYSI_NUM_REPLAY_ITERATIONS="global.simulation-loader.analysis.replay.number.iterations";
-	public static final String PROPERTY_SIMULATION_LOADER_HISTORY_MODE="global.simulation-loader.history.mode";//CREATE/READ
+	public static final String PROPERTY_SIMULATION_LOADER_HISTORY_MODE="global.simulation-loader.history.mode";//CREATE/READ/CONVERT_HISTORY_TO_CSV
 	public static final String PROPERTY_SIMULATION_LOADER_HISTORY_INPUT_FILE="global.simulation-loader.history.input-file-path";
-	public static final String PROPERTY_SIMULATION_LOADER_SENSOR_BEHAVIOR_CREATION_MODE="global.simulation-loader.sensor-behavior.sensor-data-creation-mode";//DUPLICATE_PARAMETERS/READ_ALL
+	public static final String PROPERTY_SIMULATION_LOADER_SENSOR_BEHAVIOR_CREATION_MODE="global.simulation-loader.sensor-behavior.sensor-data-creation-mode";//DUPLICATE_PARAMETERS/READ_ALL_SENSOR_BEHAVIOR
 	public static final String PROPERTY_SIMULATION_LOADER_SENSOR_BEHAVIOR_WHITE_NOISE_FILE_PATH="global.simulation-loader.sensor-behavior.white-noise-file-path";
 	public static final String PROPERTY_SIMULATION_LOADER_SENSOR_BEHAVIOR_AMP_FACTOR_FILE_PATH="global.simulation-loader.sensor-behavior.amp-factor-file-path";
 	public static final String PROPERTY_SIMULATION_LOADER_SENSOR_BEHAVIOR_NOISE_AMP_FACTOR_FILE_PATH="global.simulation-loader.sensor-behavior.noise-amp-factor-file-path";
@@ -41,6 +42,7 @@ public interface IConfig {
 	
 	public static final String PROPERTY_ALGORITHM_DISTANCE_MEASURES="cosmo.algorithm.distance-metrics.";
 	public static final String PROPERTY_ALGORITHM_NUMBER_SELECTED_SENSORS="cosmo.algorithm.selected-sensor.number";
+	public static final String PROPERTY_ALGORITHM_RANDOM_SENSOR_SELECTION_FLAG="cosmo.algorithm.selected-sensor.random-enabled";
 	public static final String PROPERTY_ALGORITHM_ZSCORE_UPDATE_FREQUENCY="cosmo.algorithm.zscore-update-frequency";
 	
 	public static final String PROPERTY_FAULT_TIMER_FAULT_DIRECTORY="fault-timer.faults.directory";
@@ -49,6 +51,8 @@ public interface IConfig {
 	public static final String PROPERTY_FAULT_REPAIR_GENERATION_NOISE_CONFIG_FILE_PATH="fault.repair-generation-noise.config-file-path";
 	public static final String PROPERTY_FAULT_MINIMUM_DAYS_BEFORE_REPAIR="fault.min-day-before-repair";
 	public static final String PROPERTY_FAULT_FAULT_DESCRIPTION_ID="fault.fault-description.id";
+	
+	public static final String PROPERTY_FAULT_SINGLE_SENSOR_FAULT_BLACK_WHITE_LIST="fault.single-sensor-fault-black-list.sensor.";
 	
 	public static final String PROPERTY_DATA_GENERATION_TIMER_DATA_GENERATION_SENSOR_DIRECTORY="data-generation-timer.data-generation-sensor.directory";
 	public static final String PROPERTY_DATA_GENERATION_TIMER_BASE_NOISE_CONFIG_FILE_PATH="data-generation-timer.base-noise.config-file-path";
@@ -84,6 +88,8 @@ public interface IConfig {
 	public static final String PROPERTY_ICOSMO_NUMBER_FAULT_INVOLVED_SENSORS="icosmo.number.fault-involved-sensors";
 	public static final String PROPERTY_ICOSMO_MAX_NUMBER_ADDED_SENSORS="icosmo.number.max-added-sensors";
 	public static final String PROPERTY_ICOSMO_MAX_NUMBER_REMOVED_SENSORS="icosmo.number.max-removed-sensors";
+	public static final String PROPERTY_ICOSMO_LOG_SENSOR_CHANGES="icosmo.log.sensor-changes";
+	public static final String PROPERTY_ICOSMO_SENSOR_INTEREST_THRESHOLD="icosmo.sensor-interest-threshold";
 	
 	public static final String PROPERTY_FAULT_DESCRIPTIONS_DIRECTORY="fault-descriptions.directory";
 	public static final String PROPERTY_FAULT_DESCRIPTION_ID="fault-description.id";
@@ -117,6 +123,7 @@ public interface IConfig {
 	public static final String PROPERTY_OUTPUT_TIMER_INPUT_FILES_DIRECTORY = "output-timer.intput-file-directory";
 	public static final String PROPERTY_OUTPUT_TIMER_HISTORY_OUTPUT_FILE_NAME = "output-timer.history-output-file-name";
 	public static final String PROPERTY_OUTPUT_TIMER_DATA_ANALYSIS_BATCH_SCRIPT_FILE_PATH = "output-timer.data-analysis-batch-script-file-path";
+	public static final String PROPERTY_OUTPUT_TIMER_SAVE_COPY_OF_INPUT_FOLDER_FLAG = "output-timer.input.save-copy-of-input-folder-flag";
 	
 	
 	
@@ -175,7 +182,16 @@ public interface IConfig {
 	 */
 	public int getIntProperty(String key);
 	
+	
 	/**
+	 * prases a boolean from the configuration xml properties file of a specific entry.
+	 * @param key the key to property to convert to boolean
+	 * @return boolean representation of property's value in configuration file. 
+	 */
+	public boolean getBooleanProperty(String key);
+	
+	/**
+	 * 
 	 * Reads all the int string entries and converts to integers
 	 * @param key the key to property to convert to ints (see getProperties)
 	 * @return integers of property's value in configuration file. 

@@ -34,12 +34,12 @@ public class TestCOSMO extends COSMO implements SensorInstanceFactory{
 		int id = 1;
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
-		COSMO cosmo = new COSMO(id,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		COSMO cosmo = new COSMO(id,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 
 		Assert.assertEquals(1, cosmo.getId());
 		Assert.assertEquals(7,cosmo.getZscoreUpdateFrequency());
 		Assert.assertEquals(2,cosmo.getNumSensorSelect());
-		Assert.assertEquals(Histogram.DistanceMeasure.HELLIGNER,cosmo.getDistanceMeasure());
+		Assert.assertEquals(Histogram.DistanceMeasure.HELLINGER,cosmo.getDistanceMeasure());
 	}
 
 
@@ -57,7 +57,7 @@ public class TestCOSMO extends COSMO implements SensorInstanceFactory{
 			int id = -1;
 			int updateFrequency = 7;
 			int numSelectedSensors = 2;
-			COSMO cosmo = new COSMO(id,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+			COSMO cosmo = new COSMO(id,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 
 
 		}catch(ConfigurationException e){
@@ -72,7 +72,7 @@ public class TestCOSMO extends COSMO implements SensorInstanceFactory{
 			int id = 1;
 			int updateFrequency = -1;
 			int numSelectedSensors = 2;
-			COSMO cosmo = new COSMO(id,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+			COSMO cosmo = new COSMO(id,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 
 
 		}catch(ConfigurationException e){
@@ -87,7 +87,7 @@ public class TestCOSMO extends COSMO implements SensorInstanceFactory{
 			int id = 1;
 			int updateFrequency = 7;
 			int numSelectedSensors = -1;
-			COSMO cosmo = new COSMO(id,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+			COSMO cosmo = new COSMO(id,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 
 
 		}catch(ConfigurationException e){
@@ -102,7 +102,7 @@ public class TestCOSMO extends COSMO implements SensorInstanceFactory{
 			int id = -1;
 			int updateFrequency = 7;
 			int numSelectedSensors = 2;
-			COSMO cosmo = new COSMO(id,null,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+			COSMO cosmo = new COSMO(id,null,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 
 
 		}catch(ConfigurationException e){
@@ -118,7 +118,7 @@ public class TestCOSMO extends COSMO implements SensorInstanceFactory{
 			int id = 1;
 			int updateFrequency = 7;
 			int numSelectedSensors = 2;
-			COSMO cosmo = new COSMO(id,new ArrayList<Vehicle>(0),Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+			COSMO cosmo = new COSMO(id,new ArrayList<Vehicle>(0),Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 
 
 		}catch(ConfigurationException e){
@@ -146,7 +146,7 @@ public class TestCOSMO extends COSMO implements SensorInstanceFactory{
 		int updateFrequency = 7;
 		int numSelectedSensors = 1;
 		TestCOSMO cosmo = new TestCOSMO();
-		cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 
 		SensorMap map = new SensorMap(algs);
 		map.init(vehicles, sensors, cosmo);
@@ -254,7 +254,7 @@ public class TestCOSMO extends COSMO implements SensorInstanceFactory{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 		TestCOSMO cosmo = new TestCOSMO();
-		cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 
 		SensorMap map = new SensorMap(algs);
 		map.init(vehicles, sensors, cosmo);
@@ -369,7 +369,7 @@ public class TestCOSMO extends COSMO implements SensorInstanceFactory{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 		TestCOSMO cosmo = new TestCOSMO();
-		cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 
 		SensorMap map = new SensorMap(algs);
 		map.init(vehicles, sensors, cosmo);
@@ -433,7 +433,7 @@ public class TestCOSMO extends COSMO implements SensorInstanceFactory{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 		TestCOSMO cosmo = new TestCOSMO();
-		cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 
 		SensorMap map = new SensorMap(algs);
 		map.init(vehicles, sensors, cosmo);
@@ -506,7 +506,7 @@ public class TestCOSMO extends COSMO implements SensorInstanceFactory{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 		TestCOSMO cosmo = new TestCOSMO();
-		cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 
 		SensorMap map = new SensorMap(algs);
 		map.init(vehicles, sensors, cosmo);
@@ -592,7 +592,7 @@ public class TestCOSMO extends COSMO implements SensorInstanceFactory{
 		//run this test a few times
 		for(int testCounter = 0;testCounter < 10;testCounter++){
 			TestCOSMO cosmo = new TestCOSMO();
-			cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+			cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 
 			SensorMap map = new SensorMap(algs);
 			map.init(vehicles, sensors, cosmo);
@@ -683,7 +683,7 @@ public class TestCOSMO extends COSMO implements SensorInstanceFactory{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 		TestCOSMO cosmo = new TestCOSMO();
-		cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 
 		SensorMap map = new SensorMap(algs);
 		map.init(vehicles, sensors, cosmo);
@@ -797,7 +797,7 @@ public class TestCOSMO extends COSMO implements SensorInstanceFactory{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 		TestCOSMO cosmo = new TestCOSMO();
-		cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 
 		SensorMap map = new SensorMap(algs);
 		map.init(vehicles, sensors, cosmo);
@@ -896,7 +896,7 @@ public class TestCOSMO extends COSMO implements SensorInstanceFactory{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 		TestCOSMO cosmo = new TestCOSMO();
-		cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		cosmo.init(id,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 
 		SensorMap map = new SensorMap(algs);
 		map.init(vehicles, sensors, cosmo);
@@ -964,10 +964,10 @@ public class TestCOSMO extends COSMO implements SensorInstanceFactory{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 		TestCOSMO cosmo0 = new TestCOSMO();
-		cosmo0.init(0,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		cosmo0.init(0,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 
 		TestCOSMO cosmo1 = new TestCOSMO();
-		cosmo1.init(1,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		cosmo1.init(1,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 		
 		SensorMap map = new SensorMap(algs);
 		map.init(vehicles, sensors, cosmo0);

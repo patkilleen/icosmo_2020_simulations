@@ -13,8 +13,16 @@ import common.exception.ConfigurationException;
 import junit.framework.Assert;
 import phase.analysis.icosmo.ICOSMO;
 import phase.analysis.icosmo.ICOSMOSensorInstance;
+import phase.generation.cosmo.SensorInterest;
 
 public class TestICOSMO extends ICOSMO{
+	
+	SensorInterest testCaseSensorInterest;
+	public SensorInterest getSensorInterestingness(Algorithm alg, Sensor sensorClass) {
+		//return max interest
+		return testCaseSensorInterest;
+		
+	}
 
 	@Test
 	public void testICOSMO_getters() {
@@ -36,9 +44,10 @@ public class TestICOSMO extends ICOSMO{
 		double defaultPotentialContribution=7;
 		int numFaultInvolvedSensorEstimation=5;
 		int zValueWindowSize = 30;
+		double sensorInterestThreshold  = 0.4;
 		TestICOSMO icosmo = new TestICOSMO();
 		icosmo.init(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
-				potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,105);
+				potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,sensorInterestThreshold,100,105);
 
 		Assert.assertEquals(10.0, icosmo.getStalnessThreshold());
 		Assert.assertEquals(11.0, icosmo.getCandicacyThreshold());
@@ -73,8 +82,9 @@ public class TestICOSMO extends ICOSMO{
 			double defaultPotentialContribution=7;
 			int numFaultInvolvedSensorEstimation=5;
 			int zValueWindowSize = 30;
+			double sensorInterestThreshold= 0.4;
 			ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
-					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
+					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,sensorInterestThreshold,100,100);
 
 
 		}catch(ConfigurationException e){
@@ -98,8 +108,9 @@ public class TestICOSMO extends ICOSMO{
 			double defaultPotentialContribution=7;
 			int numFaultInvolvedSensorEstimation=5;
 			int zValueWindowSize = 30;
+			double sensorInterestThreshold= 0.4;
 			ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
-					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
+					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,sensorInterestThreshold,100,100);
 
 
 		}catch(ConfigurationException e){
@@ -123,8 +134,9 @@ public class TestICOSMO extends ICOSMO{
 			double defaultPotentialContribution=7;
 			int numFaultInvolvedSensorEstimation=5;
 			int zValueWindowSize = 30;
+			double sensorInterestThreshold= 0.4;
 			ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
-					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
+					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,sensorInterestThreshold,100,100);
 
 
 		}catch(ConfigurationException e){
@@ -146,8 +158,9 @@ public class TestICOSMO extends ICOSMO{
 			double defaultPotentialContribution=7;
 			int numFaultInvolvedSensorEstimation=5;
 			int zValueWindowSize = 30;
+			double sensorInterestThreshold= 0.4;
 			ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
-					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,-1,100);
+					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,sensorInterestThreshold,-1,100);
 
 
 		}catch(ConfigurationException e){
@@ -171,8 +184,9 @@ public class TestICOSMO extends ICOSMO{
 			double defaultPotentialContribution=7;
 			int numFaultInvolvedSensorEstimation=5;
 			int zValueWindowSize = 30;
+			double sensorInterestThreshold= 0.4;
 			ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
-					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,-1);
+					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,sensorInterestThreshold,100,-1);
 
 
 		}catch(ConfigurationException e){
@@ -197,8 +211,9 @@ public class TestICOSMO extends ICOSMO{
 			double defaultPotentialContribution=7;
 			int numFaultInvolvedSensorEstimation=5;
 			int zValueWindowSize = 30;
+			double sensorInterestThreshold= 0.4;
 			ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
-					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
+					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,sensorInterestThreshold,100,100);
 
 
 		}catch(ConfigurationException e){
@@ -223,8 +238,9 @@ public class TestICOSMO extends ICOSMO{
 			double defaultPotentialContribution=7;
 			int numFaultInvolvedSensorEstimation=0;
 			int zValueWindowSize = 30;
+			double sensorInterestThreshold= 0.4;
 			ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
-					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
+					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,sensorInterestThreshold,100,100);
 
 
 		}catch(ConfigurationException e){
@@ -248,8 +264,9 @@ public class TestICOSMO extends ICOSMO{
 			double defaultPotentialContribution=7;
 			int numFaultInvolvedSensorEstimation=-1;
 			int zValueWindowSize = 30;
+			double sensorInterestThreshold= 0.4;
 			ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
-					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
+					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,sensorInterestThreshold,100,100);
 
 
 		}catch(ConfigurationException e){
@@ -273,8 +290,9 @@ public class TestICOSMO extends ICOSMO{
 			double defaultPotentialContribution=7;
 			int numFaultInvolvedSensorEstimation=-1;
 			int zValueWindowSize = 0;
+			double sensorInterestThreshold= 0.4;
 			ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
-					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
+					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,sensorInterestThreshold,100,100);
 
 
 		}catch(ConfigurationException e){
@@ -298,8 +316,9 @@ public class TestICOSMO extends ICOSMO{
 			double defaultPotentialContribution=7;
 			int numFaultInvolvedSensorEstimation=-1;
 			int zValueWindowSize = -1;
+			double sensorInterestThreshold= 0.4;
 			ICOSMO icosmo = new ICOSMO(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
-					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
+					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,sensorInterestThreshold,100,100);
 
 
 		}catch(ConfigurationException e){
@@ -322,9 +341,10 @@ public class TestICOSMO extends ICOSMO{
 		double defaultPotentialContribution=7;
 		int numFaultInvolvedSensorEstimation=5;
 		int zValueWindowSize = 30;
+		double sensorInterestThreshold  = 0.4;
 		TestICOSMO icosmo = new TestICOSMO();
 		icosmo.init(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
-				potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,100,100);
+				potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,zValueWindowSize,sensorInterestThreshold,100,100);
 
 		List<Algorithm> algs =  new ArrayList<Algorithm>(2);
 		algs.add(new Algorithm(0));
@@ -440,14 +460,182 @@ public class TestICOSMO extends ICOSMO{
 						potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,30,100,100);
 
 				List<Sensor> estiamtedFaultInvolved = icosmo.iraRecall(faultInvolvedSensors, nonfaultInvolvedSensors);
-
-
+					
+				
 				Assert.assertEquals(k,estiamtedFaultInvolved.size());
 
 			}
 		}
 
 	}
+	
+	@Test
+	public void testIraRecall_recall_100_excess_fault_inv_sensors() {
+		double stalnessThreshold=10;
+		double 	candicacyThreshold=11;
+		double contributionDecreaseMod=1;
+		double contributionIncreaseMod=2;
+		double potentialContrDecreaseMod=3;
+		double potentialContrIncreaseMod=4;
+		double desiredPrecision=0.6;
+		double defaultContribution=5;
+		double defaultPotentialContribution=7;
+
+
+		int numFaultInvolvedSensorEstimation= 21;
+		double desiredRecall=1.0;
+
+
+		List<Sensor> faultInvolvedSensors = new ArrayList<Sensor>(10);
+		for(int i = 0;i<10;i++){
+			faultInvolvedSensors.add(new Sensor(0,i));
+		}
+
+		List<Sensor> nonfaultInvolvedSensors = new ArrayList<Sensor>(100);
+		for(int i = 0;i<100;i++){
+			nonfaultInvolvedSensors.add(new Sensor(1,i));
+		}
+
+		TestICOSMO icosmo = new TestICOSMO();
+		icosmo.init(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
+				potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,30,100,100);
+
+		List<Sensor> estiamtedFaultInvolved = icosmo.iraRecall(faultInvolvedSensors, nonfaultInvolvedSensors);
+		
+		//10 of them should have pgn 0, 11 others have pgn 1, since only 10 fault invovled sensors
+		// but desiring
+		
+		int numPgn0 = 0;
+		int numPgn1 = 0;
+				
+		//they all should have pgn0, indicating fault involved (100%recall)
+		for(Sensor s : estiamtedFaultInvolved){
+			if(s.getPgn() == 0) {
+				numPgn0++;
+			}else {
+				numPgn1++;
+			}
+				
+			
+		}
+		
+		Assert.assertEquals(10,numPgn0);
+		Assert.assertEquals(11,numPgn1);
+
+	}
+	
+	@Test
+	public void testIraRecall_recall_fractional_num_sensors() {
+		double stalnessThreshold=10;
+		double 	candicacyThreshold=11;
+		double contributionDecreaseMod=1;
+		double contributionIncreaseMod=2;
+		double potentialContrDecreaseMod=3;
+		double potentialContrIncreaseMod=4;
+		double desiredPrecision=0.6;
+		double defaultContribution=5;
+		double defaultPotentialContribution=7;
+
+
+		int numFaultInvolvedSensorEstimation= 20;
+		double desiredRecall=0.3;
+
+
+		List<Sensor> faultInvolvedSensors = new ArrayList<Sensor>(99);
+		for(int i = 0;i<99;i++){
+			faultInvolvedSensors.add(new Sensor(0,i));
+		}
+
+		List<Sensor> nonfaultInvolvedSensors = new ArrayList<Sensor>(100);
+		for(int i = 0;i<100;i++){
+			nonfaultInvolvedSensors.add(new Sensor(1,i));
+		}
+
+		TestICOSMO icosmo = new TestICOSMO();
+		icosmo.init(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
+				potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,30,100,100);
+
+		List<Sensor> estiamtedFaultInvolved = icosmo.iraRecall(faultInvolvedSensors, nonfaultInvolvedSensors);
+		
+		//10 of them should have pgn 0, 11 others have pgn 1, since only 10 fault invovled sensors
+		// but desiring
+		
+		int numPgn0 = 0;
+		int numPgn1 = 0;
+				
+		//they all should have pgn0, indicating fault involved (100%recall)
+		for(Sensor s : estiamtedFaultInvolved){
+			if(s.getPgn() == 0) {
+				numPgn0++;
+			}else {
+				numPgn1++;
+			}
+				
+			
+		}
+		
+
+		
+		Assert.assertEquals(true,(numPgn0 == 29) ||(numPgn0 == 30));
+
+	}
+	
+	
+	@Test
+	public void testIraRecall_recall_70_excess_fault_inv_sensors() {
+		double stalnessThreshold=10;
+		double 	candicacyThreshold=11;
+		double contributionDecreaseMod=1;
+		double contributionIncreaseMod=2;
+		double potentialContrDecreaseMod=3;
+		double potentialContrIncreaseMod=4;
+		double desiredPrecision=0.6;
+		double defaultContribution=5;
+		double defaultPotentialContribution=7;
+
+
+		int numFaultInvolvedSensorEstimation= 21;
+		double desiredRecall=0.7;
+
+
+		List<Sensor> faultInvolvedSensors = new ArrayList<Sensor>(10);
+		for(int i = 0;i<10;i++){
+			faultInvolvedSensors.add(new Sensor(0,i));
+		}
+
+		List<Sensor> nonfaultInvolvedSensors = new ArrayList<Sensor>(100);
+		for(int i = 0;i<100;i++){
+			nonfaultInvolvedSensors.add(new Sensor(1,i));
+		}
+
+		TestICOSMO icosmo = new TestICOSMO();
+		icosmo.init(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
+				potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,30,100,100);
+
+		List<Sensor> estiamtedFaultInvolved = icosmo.iraRecall(faultInvolvedSensors, nonfaultInvolvedSensors);
+		
+		//10 of them should have pgn 0, 11 others have pgn 1, since only 10 fault invovled sensors
+		// but desiring
+		
+		int numPgn0 = 0;
+		int numPgn1 = 0;
+				
+		//they all should have pgn0, indicating fault involved (100%recall)
+		for(Sensor s : estiamtedFaultInvolved){
+			if(s.getPgn() == 0) {
+				numPgn0++;
+			}else {
+				numPgn1++;
+			}
+				
+			
+		}
+		
+		Assert.assertEquals(7,numPgn0);
+		Assert.assertEquals(14,numPgn1);
+
+	}
+	
 
 	@Test
 	public void testIraRecall_recall_100() {
@@ -488,48 +676,55 @@ public class TestICOSMO extends ICOSMO{
 		}
 
 	}
+	
+
 
 	@Test
 	public void testIraRecall_recall_75() {
-		double stalnessThreshold=10;
-		double 	candicacyThreshold=11;
-		double contributionDecreaseMod=1;
-		double contributionIncreaseMod=2;
-		double potentialContrDecreaseMod=3;
-		double potentialContrIncreaseMod=4;
-		double desiredPrecision=0.6;
-		double defaultContribution=5;
-		double defaultPotentialContribution=7;
-
-
-		int numFaultInvolvedSensorEstimation= 20;
-		double desiredRecall=0.75;
-
-
-		List<Sensor> faultInvolvedSensors = new ArrayList<Sensor>(100);
-		for(int i = 0;i<10;i++){
-			faultInvolvedSensors.add(new Sensor(0,i));
-		}
-
-		List<Sensor> nonfaultInvolvedSensors = new ArrayList<Sensor>(100);
-		for(int i = 0;i<100;i++){
-			nonfaultInvolvedSensors.add(new Sensor(1,i));
-		}
-
-		TestICOSMO icosmo = new TestICOSMO();
-		icosmo.init(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
-				potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,30,100,100);
-
-		List<Sensor> estiamtedFaultInvolved = icosmo.iraRecall(faultInvolvedSensors, nonfaultInvolvedSensors);
-
-		//with 75% recall, there should be 7 faultinvolved sensors
-		int count = 0;
-		for(Sensor s : estiamtedFaultInvolved){
-			if(s.getPgn() == 0){
-				count++;
+		for(int n=0;n<10;n++) {
+			double stalnessThreshold=10;
+			double 	candicacyThreshold=11;
+			double contributionDecreaseMod=1;
+			double contributionIncreaseMod=2;
+			double potentialContrDecreaseMod=3;
+			double potentialContrIncreaseMod=4;
+			double desiredPrecision=0.6;
+			double defaultContribution=5;
+			double defaultPotentialContribution=7;
+	
+	
+			int numFaultInvolvedSensorEstimation= 20;
+			double desiredRecall=0.75;
+	
+	
+			List<Sensor> faultInvolvedSensors = new ArrayList<Sensor>(100);
+			for(int i = 0;i<10;i++){
+				faultInvolvedSensors.add(new Sensor(0,i));
 			}
+	
+			List<Sensor> nonfaultInvolvedSensors = new ArrayList<Sensor>(100);
+			for(int i = 0;i<100;i++){
+				nonfaultInvolvedSensors.add(new Sensor(1,i));
+			}
+	
+			TestICOSMO icosmo = new TestICOSMO();
+			icosmo.init(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
+					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,30,100,100);
+	
+			List<Sensor> estiamtedFaultInvolved = icosmo.iraRecall(faultInvolvedSensors, nonfaultInvolvedSensors);
+	
+			//with 75% recall, there should be 7 faultinvolved sensors
+			int count = 0;
+			for(Sensor s : estiamtedFaultInvolved){
+				if(s.getPgn() == 0){
+					count++;
+				}
+			}
+			
+			int minCount =(int)Math.floor(10.0*0.75);
+			int maxCount =minCount+1;
+			Assert.assertEquals(true,count>=minCount && count <= maxCount);
 		}
-		Assert.assertEquals((int)Math.floor(10.0*0.75),count);
 
 	}
 
@@ -579,7 +774,21 @@ public class TestICOSMO extends ICOSMO{
 					count++;
 				}
 			}
-			Assert.assertEquals((int)Math.floor(10.0*desiredRecall),count);
+			
+			double quotient =10.0*desiredRecall;
+			
+			//int?
+			if((quotient %1 )==0) {
+				Assert.assertEquals((int)quotient,count);	
+			}else {
+				int minCount =(int)Math.floor(quotient);
+				int maxCount = minCount +1;
+				
+				Assert.assertEquals(true,count>=minCount && count <=maxCount);
+			}
+			
+			
+			
 		}
 
 	}
@@ -631,10 +840,90 @@ public class TestICOSMO extends ICOSMO{
 					count++;
 				}
 			}
-			Assert.assertEquals((int)Math.floor(100.0*desiredPrecision),count);
+			//Assert.assertEquals((int)Math.floor(100.0*desiredPrecision),count);
+			
+			double quotient =100.0*desiredPrecision;
+			
+			//int?
+			if((quotient %1 )==0) {
+				Assert.assertEquals((int)quotient,count);	
+			}else {
+				int minCount =(int)Math.floor(quotient);
+				int maxCount = minCount +1;
+				
+				Assert.assertEquals(true,count>=minCount && count <=maxCount);
+			}
+			
+			
 		}
 
 	}
+	
+	@Test
+	public void testIraRecall_precision_x_excess_fault_inv_sensors() {
+
+		/*
+		 * note that this test fails when numFaultInvolvedSensorEstimation is 20
+		 */
+		double stalnessThreshold=10;
+		double 	candicacyThreshold=11;
+		double contributionDecreaseMod=1;
+		double contributionIncreaseMod=2;
+		double potentialContrDecreaseMod=3;
+		double potentialContrIncreaseMod=4;
+		double desiredRecall=0.6;
+		double defaultContribution=5;
+		double defaultPotentialContribution=7;
+
+
+		int numFaultInvolvedSensorEstimation= 100;
+		for(int k = 0;k<100;k++){
+
+
+			double desiredPrecision=((double)k) * 0.01;
+
+
+			List<Sensor> faultInvolvedSensors = new ArrayList<Sensor>(50);
+			for(int i = 0;i<50;i++){
+				faultInvolvedSensors.add(new Sensor(0,i));
+			}
+
+			List<Sensor> nonfaultInvolvedSensors = new ArrayList<Sensor>(100);
+			for(int i = 0;i<100;i++){
+				nonfaultInvolvedSensors.add(new Sensor(1,i));
+			}
+
+			TestICOSMO icosmo = new TestICOSMO();
+			icosmo.init(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
+					potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,30,100,100);
+
+			List<Sensor> estiamtedFaultInvolved = icosmo.iraPrecision(faultInvolvedSensors, nonfaultInvolvedSensors);
+
+			//with 75% recall, there should be 7 faultinvolved sensors
+			int count = 0;
+			for(Sensor s : estiamtedFaultInvolved){
+				if(s.getPgn() == 0){
+					count++;
+				}
+			}
+			//Assert.assertEquals((int)Math.floor(50.0*desiredPrecision),count);
+			
+			double quotient =50.0*desiredPrecision;
+			
+			//int?
+			if((quotient %1 )==0) {
+				Assert.assertEquals((int)quotient,count);	
+			}else {
+				int minCount =(int)Math.floor(quotient);
+				int maxCount = minCount +1;
+				
+				Assert.assertEquals(true,count>=minCount && count <=maxCount);
+			}
+			
+		}
+
+	}
+	
 
 	@Test
 	public void testAdjustSensorRanking_potential_contribution_increase() {
@@ -1025,6 +1314,10 @@ public class TestICOSMO extends ICOSMO{
 
 		icosmo.init(map);
 
+		
+		//max sensor interst, so no candidates ignored (note that the senosr doesn't matter)
+		icosmo.testCaseSensorInterest =new SensorInterest(new Sensor(0,0),1,0);
+				
 		//both vehicles neeed an average of 0 contribution (default is 5, so one vehicle needs to be -5)
 		boolean atLeastOneSensorDetectedDeviation = false;	
 		ICOSMOSensorInstance faultInvolvedSensor = (ICOSMOSensorInstance) map.getSensorInstance(new Algorithm(0), new Vehicle(0), new Sensor(0,0));
@@ -1100,6 +1393,9 @@ public class TestICOSMO extends ICOSMO{
 
 		icosmo.init(map);
 
+		//max sensor interst, so no candidates ignored (note that the senosr doesn't matter)
+		icosmo.testCaseSensorInterest =new SensorInterest(new Sensor(0,0),1,0);
+		
 		//both vehicles neeed an average of 0 contribution (default is 5, so one vehicle needs to be -5)
 		boolean atLeastOneSensorDetectedDeviation = false;	
 		ICOSMOSensorInstance faultInvolvedSensor = (ICOSMOSensorInstance) map.getSensorInstance(new Algorithm(0), new Vehicle(0), new Sensor(0,0));
@@ -1252,11 +1548,14 @@ public class TestICOSMO extends ICOSMO{
 
 		icosmo.init(map);
 
+		
 		//both vehicles neeed an average of 0 contribution (default is 5, so one vehicle needs to be -5)
 
 		ICOSMOSensorInstance faultInvolvedSensor = (ICOSMOSensorInstance) map.getSensorInstance(new Algorithm(0), new Vehicle(0), new Sensor(0,0));
 		ICOSMOSensorInstance otherfaultInvolvedSensor = (ICOSMOSensorInstance) map.getSensorInstance(new Algorithm(0), new Vehicle(1), new Sensor(0,0));
-
+		//max sensor interst, so no candidates ignored (note that the senosr doesn't matter)
+		icosmo.testCaseSensorInterest =new SensorInterest(new Sensor(0,0),1,0);
+		
 		faultInvolvedSensor.setCosmoSensor(false);
 		otherfaultInvolvedSensor.setCosmoSensor(false);
 
@@ -1282,6 +1581,91 @@ public class TestICOSMO extends ICOSMO{
 
 	}
 
+	@Test
+	public void testIsSensorCandidate_considering_sensorInterest() {
+		double stalnessThreshold=0;
+		double 	candicacyThreshold=10;
+		double contributionDecreaseMod=1;
+		double contributionIncreaseMod=1;
+		double potentialContrDecreaseMod=1;
+		double potentialContrIncreaseMod=1;
+		double desiredRecall=0.5;
+		double desiredPrecision=0.6;
+		double defaultContribution=5;
+		double defaultPotentialContribution=5;
+		int numFaultInvolvedSensorEstimation=5;
+		TestICOSMO icosmo = new TestICOSMO();
+		icosmo.init(stalnessThreshold, candicacyThreshold, contributionDecreaseMod, contributionIncreaseMod,
+				potentialContrDecreaseMod, potentialContrIncreaseMod, desiredRecall, desiredPrecision, defaultContribution, defaultPotentialContribution,numFaultInvolvedSensorEstimation,30,100,100);
+		
+		double interstThreshold = 0.5;
+		icosmo.setSensorInterestThreshold(interstThreshold);
+		
+		List<Algorithm> algs =  new ArrayList<Algorithm>(2);
+		algs.add(new Algorithm(0));
+		algs.add(new Algorithm(1));
+
+		List<Vehicle> vehicles = new ArrayList<Vehicle>(2);
+		vehicles.add(new Vehicle(0));
+		vehicles.add(new Vehicle(1));
+
+		List<Sensor> sensors = new ArrayList<Sensor>(2);
+		sensors.add(new Sensor(0,0));
+		sensors.add(new Sensor(1,0));
+		sensors.add(new Sensor(0,1));
+
+		SensorMap map = new SensorMap(algs);
+		map.init(vehicles, sensors, icosmo);
+
+		icosmo.init(map);
+
+		
+		//both vehicles neeed an average of 0 contribution (default is 5, so one vehicle needs to be -5)
+
+		ICOSMOSensorInstance faultInvolvedSensor = (ICOSMOSensorInstance) map.getSensorInstance(new Algorithm(0), new Vehicle(0), new Sensor(0,0));
+		ICOSMOSensorInstance otherfaultInvolvedSensor = (ICOSMOSensorInstance) map.getSensorInstance(new Algorithm(0), new Vehicle(1), new Sensor(0,0));
+		
+		
+		faultInvolvedSensor.setCosmoSensor(false);
+		otherfaultInvolvedSensor.setCosmoSensor(false);
+
+		for(int neIx = 0; neIx < 100; neIx++){
+			double ne=((double)neIx) * 0.01;
+		
+			for(int stabIx = 0; stabIx < 100; stabIx++){
+				double stability=((double)stabIx) * 0.01;
+			
+				SensorInterest si = new SensorInterest(new Sensor(0,0),ne,stability);
+				double interestingness =si.computeInterestValue();
+				
+				icosmo.testCaseSensorInterest =si;
+				
+				for(int i = -20; i < 20; i++){
+					for(int j = -20; j < 20; j++){
+		
+						boolean expected = (((double)(i+j))/2.0) >= candicacyThreshold;
+						expected = expected && (interestingness <= interstThreshold);//senosr is interesting enough?
+						faultInvolvedSensor.setPotentialContribution(i);
+						otherfaultInvolvedSensor.setPotentialContribution(j);
+						Assert.assertEquals(expected,icosmo.isSensorCandidate(new Algorithm(0), faultInvolvedSensor));
+						Assert.assertEquals(expected,icosmo.isSensorCandidate(new Algorithm(0), otherfaultInvolvedSensor));
+		
+						Assert.assertEquals(false,icosmo.isSensorCandidate(new Algorithm(1), faultInvolvedSensor));
+						Assert.assertEquals(false,icosmo.isSensorCandidate(new Algorithm(1), otherfaultInvolvedSensor));
+		
+						//shouldn't affect any attributes of sensor instance
+						Assert.assertEquals((double)i,faultInvolvedSensor.getPotentialContribution());
+						Assert.assertEquals((double)j,otherfaultInvolvedSensor.getPotentialContribution());
+						Assert.assertEquals(false,faultInvolvedSensor.isCosmoSensor());
+						Assert.assertEquals(false,otherfaultInvolvedSensor.isCosmoSensor());
+					}	
+				}
+			}
+		}
+
+	}
+
+	
 	@Test
 	public void testAdd_Remove_COSMOSensor() {
 		double stalnessThreshold=0;

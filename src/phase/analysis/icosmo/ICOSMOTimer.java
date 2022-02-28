@@ -25,7 +25,7 @@ import common.exception.SimulationException;
 import common.log.Logger;
 import common.log.LoggerFactory;
 import common.synchronization.MultiThreadedTimer;
-import phase.generation.cosmo.AnomalyDetectionAlgorithm;
+import phase.generation.cosmo.COSMOSensorInstance;
 import phase.generation.history.SensorStatusHistory;
 
 
@@ -43,6 +43,7 @@ public class ICOSMOTimer extends MultiThreadedTimer<Algorithm> {
 	//parameters
 	private double deviationThreshold;
 	private int leftTimeWindowDeviations;
+	private boolean loggingSensorChanges;
 
 	//associations
 	private SensorMap sensorMap;
@@ -50,6 +51,7 @@ public class ICOSMOTimer extends MultiThreadedTimer<Algorithm> {
 	private List<Vehicle> vehicles;
 	private List<Sensor> sensors;
 	private ICOSMO icosmo;
+	
 	
 	public enum Mode {RECALL,PRECISION};
 
@@ -124,6 +126,11 @@ public class ICOSMOTimer extends MultiThreadedTimer<Algorithm> {
 		return leftTimeWindowDeviations;
 	}
 
+	public boolean isLoggingSensorChanges() {
+		return loggingSensorChanges;
+	}
+
+
 
 	public SensorStatusHistory getPartialSensorStatusHistory() {
 		return partialSensorStatusHistory;
@@ -170,6 +177,11 @@ public class ICOSMOTimer extends MultiThreadedTimer<Algorithm> {
 	}
 	
 
+	public void setLoggingSensorChanges(boolean loggingSensorChanges) {
+		this.loggingSensorChanges = loggingSensorChanges;
+	}
+
+	
 	public TimeStampedSensorStatusOutputStream getTimeStampedSensorStatusOutputStream() {
 		return timeStampedSensorStatusOutputStream;
 	}
@@ -203,6 +215,7 @@ public class ICOSMOTimer extends MultiThreadedTimer<Algorithm> {
 				List<SensorInstance> instances = sensorMap.getSensorInstances(alg, s);
 				
 				for(SensorInstance i : instances){
+					
 					ICOSMOSensorInstance i2  = (ICOSMOSensorInstance) i;
 					icosmo.resetSensorInstanceToDefault(i2);
 				}
@@ -225,7 +238,7 @@ public class ICOSMOTimer extends MultiThreadedTimer<Algorithm> {
 			List<Sensor> defaultSelectedSensors = algTmp.getSelectedSensors();
 			
 			for(Sensor selectedSensorClass : defaultSelectedSensors){
-			List<SensorInstance> instances = sensorMap.getSensorInstances(alg, selectedSensorClass);
+				List<SensorInstance> instances = sensorMap.getSensorInstances(alg, selectedSensorClass);
 			
 				for(SensorInstance i : instances){
 					ICOSMOSensorInstance i2  = (ICOSMOSensorInstance) i;
@@ -385,6 +398,9 @@ public class ICOSMOTimer extends MultiThreadedTimer<Algorithm> {
 		ICOSMOSensorInstance faultInvolvedSensor = (ICOSMOSensorInstance) sensorMap.getSensorInstance(alg, v, s);
 		boolean sensorDeviationOccured = false;
 
+		//we check here as after adjusting ranking it might be change
+		boolean wasCOSMOSensor=faultInvolvedSensor.isCosmoSensor();
+		
 		//ignore checking for deviations of non-cosmo sensors, zscore aren't recorded in real system for these sensors
 		//so ignoring them in the simulation is realistic
 		if(faultInvolvedSensor.isCosmoSensor()){
@@ -401,6 +417,13 @@ public class ICOSMOTimer extends MultiThreadedTimer<Algorithm> {
 		boolean sensorSelectionChange = icosmo.adjustSensorRanking(alg,faultDetected, faultInvolvedSensor,sensorDeviationOccured);
 		
 		
+		if(sensorSelectionChange && wasCOSMOSensor && faultInvolvedSensor.isCosmoSensor()) {
+			Logger log = LoggerFactory.getInstance();
+			log.log_error("sensor instance was a cosmo sensor, flagged as changed, but is still cosmo sensor: "+s.toString());
+		}else if (sensorSelectionChange && ! wasCOSMOSensor && !faultInvolvedSensor.isCosmoSensor()) {
+			Logger log = LoggerFactory.getInstance();
+			log.log_error("sensor instance wasn't cosmo sensor, flagged as changed, but is isn't cosmo sensor: "+s.toString());
+		}
 		/*
 		 * adjust sensor ranking could avoid checking all staleness and cnadidacy of the other vehicles, 
 		 * it just returns a flag indicating whether its owrth checking for stale sensos
@@ -419,6 +442,19 @@ public class ICOSMOTimer extends MultiThreadedTimer<Algorithm> {
 				ICOSMOSensorInstance ic = (ICOSMOSensorInstance)i;
 				ic.clearZValues();
 			}
+			
+			
+			if(isLoggingSensorChanges()) {
+				//log the change
+				Logger log = LoggerFactory.getInstance();
+				if(wasCOSMOSensor){
+					
+					log.log_info("removed stale sensor: (alg: "+alg.getName()+", vehicle: "+v.getVid()+", sensor: ("+s.getPgn()+","+s.getSpn()+"), repair time"+ repairTimeEvent.getTime());
+				}else {
+					log.log_info("added candidate sensor: (alg: "+alg.getName()+", vehicle: "+v.getVid()+", sensor: ("+s.getPgn()+","+s.getSpn()+"), repair time"+ repairTimeEvent.getTime());
+				}
+			}//end log sensor changes
+			
 		}
 		
 	}

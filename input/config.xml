@@ -85,7 +85,7 @@
 	
    <entry key="cosmo.algorithm.distance-metrics.0">CITY_BLOCK</entry>
    <entry key="cosmo.algorithm.distance-metrics.1">EUCLIDEAN</entry>
-   <entry key="cosmo.algorithm.distance-metrics.2">HELLIGNER</entry>
+   <entry key="cosmo.algorithm.distance-metrics.2">HELLINGER</entry>
    <entry key="cosmo.algorithm.distance-metrics.3">SQUARED_EUCLIDEAN</entry>
    <entry key="cosmo.algorithm.distance-metrics.4">GOWER</entry>
    <entry key="cosmo.algorithm.distance-metrics.5">INTERSECTION</entry>
@@ -94,7 +94,7 @@
    <entry key="cosmo.algorithm.distance-metrics.8">COSINE</entry>
    <entry key="cosmo.algorithm.distance-metrics.9">BHATTACHARYYA</entry>
 
-   
+   <entry key="cosmo.algorithm.selected-sensor.random-enabled">true</entry>   
    <entry key="cosmo.algorithm.selected-sensor.number">2</entry>
    <entry key="cosmo.algorithm.zscore-update-frequency">7</entry>
 	
@@ -104,6 +104,9 @@
    <entry key="fault.repair-generation-noise.config-file-path"></entry>
    <entry key="fault.min-day-before-repair"></entry>
    <entry key="fault.fault-description.id"></entry>
+   
+   <entry key="fault.single-sensor-fault-black-list.sensor.0">(61440,1717)</entry>
+   <entry key="fault.single-sensor-fault-black-list.sensor.1">(61444,4154)</entry>
 	
    <entry key="data-generation-timer.data-generation-sensor.directory">input\sensor-data-gen-behavior</entry>
    <entry key="data-generation-timer.base-noise.config-file-path">input\base-noise.xml</entry>
@@ -139,6 +142,8 @@
    <entry key="icosmo.number.fault-involved-sensors">16</entry>
    <entry key="icosmo.number.max-added-sensors">8</entry>
    <entry key="icosmo.number.max-removed-sensors">1</entry>
+   <entry key="icosmo.log.sensor-changes">false</entry>
+   <entry key="icosmo.sensor-interest-threshold">0.05</entry>
 	
 	
    <entry key="fault-descriptions.directory">input\fault-descriptions</entry>

@@ -76,8 +76,8 @@ public class TestDataGenerationCOSMOTimer extends DataGenerationCOSMOTimer{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 
-		algs.add(new COSMO(0,vehicles2,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency));
-		algs.add(new COSMO(1,vehicles2,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency));
+		algs.add(new COSMO(0,vehicles2,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency));
+		algs.add(new COSMO(1,vehicles2,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency));
 
 
 		boolean flag = false;
@@ -134,8 +134,8 @@ public class TestDataGenerationCOSMOTimer extends DataGenerationCOSMOTimer{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 
-		algs.add(new COSMO(0,vehicles2,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency));
-		algs.add(new COSMO(1,vehicles2,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency));
+		algs.add(new COSMO(0,vehicles2,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency));
+		algs.add(new COSMO(1,vehicles2,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency));
 
 
 		DataGenerationCOSMOTimer t = new DataGenerationCOSMOTimer(vehicles, algs,updateFrequency);
@@ -165,8 +165,8 @@ public class TestDataGenerationCOSMOTimer extends DataGenerationCOSMOTimer{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 
-		algs.add(new COSMO(0,vehicles2,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency));
-		algs.add(new COSMO(1,vehicles2,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency));
+		algs.add(new COSMO(0,vehicles2,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency));
+		algs.add(new COSMO(1,vehicles2,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency));
 
 
 		DataGenerationCOSMOTimer t = new DataGenerationCOSMOTimer(vehicles, algs,updateFrequency);
@@ -198,8 +198,8 @@ public class TestDataGenerationCOSMOTimer extends DataGenerationCOSMOTimer{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 
-		algs.add(new COSMO(0,vehicles2,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency));
-		algs.add(new COSMO(1,vehicles2,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency));
+		algs.add(new COSMO(0,vehicles2,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency));
+		algs.add(new COSMO(1,vehicles2,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency));
 
 
 		DataGenerationCOSMOTimer t = new DataGenerationCOSMOTimer(vehicles, algs,updateFrequency);
@@ -284,10 +284,10 @@ public class TestDataGenerationCOSMOTimer extends DataGenerationCOSMOTimer{
 		int numSelectedSensors = 2;
 
 
-		COSMO c = new COSMO(0,vehicles2,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		COSMO c = new COSMO(0,vehicles2,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 		algs.add(c);
 		algs2.add(c);
-		c = new COSMO(1,vehicles2,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		c = new COSMO(1,vehicles2,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 		algs.add(c);
 		algs2.add(c);
 		
@@ -424,10 +424,10 @@ public class TestDataGenerationCOSMOTimer extends DataGenerationCOSMOTimer{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 
-		COSMO c = new COSMO(0,vehicles2,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		COSMO c = new COSMO(0,vehicles2,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 		algs.add(c);
 		algs2.add(c);
-		c = new COSMO(1,vehicles2,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		c = new COSMO(1,vehicles2,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 		algs.add(c);
 		algs2.add(c);
 
@@ -472,10 +472,10 @@ public class TestDataGenerationCOSMOTimer extends DataGenerationCOSMOTimer{
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 
-		COSMO c = new COSMO(0,vehicles2,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		COSMO c = new COSMO(0,vehicles2,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 		algs.add(c);
 		algs2.add(c);
-		c = new COSMO(1,vehicles2,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency);
+		c = new COSMO(1,vehicles2,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency);
 		algs.add(c);
 		algs2.add(c);
 

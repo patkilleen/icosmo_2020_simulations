@@ -453,16 +453,30 @@ public class COSMO extends AnomalyDetectionAlgorithm implements Serializable{
 		//sort the sensor class interests by most interesting
 		Collections.sort(candidates);
 		
-		//choose the top candidates sensors (most interesting) to add to cosmo model
-		for(int j = 0; j <this.numSensorSelect;j++){
+		//iterate over all sensor instance to assign their sensor class' interestingness
+		for(int j = 0; j <candidates.size();j++){
 			SensorInterest si = candidates.get(j);
 			Sensor s = si.getSensor();
-			log.log_info("COSMO: ("+this.distanceMeasure.toString()+") selecting sensor: "+s);
+			
+			
+			//choose the top candidates sensors (most interesting) to add to cosmo model
+			if(j <this.numSensorSelect) {
+							
+				log.log_info("COSMO: ("+this.distanceMeasure.toString()+") selecting sensor: "+s);
+			}
+			
 			List<COSMOSensorInstance> instances = this.getSensorInstances(s);
 			
 			//include all snesor instances of most interesting sensor classes in cosmo model (select them)
 			for(COSMOSensorInstance i : instances){
-				i.setCOSMOSensor(true);
+				
+				//choose the top candidates sensors (most interesting) to add to cosmo model
+				if(j <this.numSensorSelect) {
+					i.setCOSMOSensor(true);
+				}
+				
+				//set the sensor interestingness
+				i.setInterestingness(si);
 			}
 		}
 		

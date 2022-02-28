@@ -244,7 +244,27 @@ public class Configuration implements IConfig{
 		return res;
 	}
 
+	
+	/**
+	 * prases a boolean from the configuration xml properties file of a specific entry.
+	 * @param key the key to property to convert to boolean
+	 * @return boolean representation of property's value in configuration file. 
+	 */
+	public boolean getBooleanProperty(String key) {
+		boolean res = false;
 
+		String strBool = this.getPropertyAndValidate(key);
+
+
+		try{
+			res = Boolean.parseBoolean(strBool);
+		}catch(NumberFormatException e){
+			throw new XMLFormatException("could not parse value of property ("+key+") to boolean, expected a boolean but was ("+strBool+").");
+		}
+
+		return res;
+
+	}
 
 	/**
 	 * Loads a configuration object by retrieving the target config file 

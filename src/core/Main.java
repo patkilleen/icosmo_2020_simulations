@@ -77,8 +77,9 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws Exception{
+		
 		if(args.length < 1){
-			System.out.println("expected <config file path>... exiting");
+			System.out.println("expected at least one <config file path>... exiting");
 			System.exit(1);
 		}
 
@@ -101,7 +102,11 @@ public class Main {
 					//reads all parameters from config files
 					GlobalTimer timer = loader.load();
 		
-		
+					//this configuration run doesn't run a simulation?
+					if(timer == null) {
+						break;
+					}
+					log.log_info("\n**Iteration "+i+"**\n");
 					//skip the first phase if were reading history from file
 					if(loader.getHistoryMode() == SimulationLoader.HistoryMode.CREATE){
 						runPhase1(timer);

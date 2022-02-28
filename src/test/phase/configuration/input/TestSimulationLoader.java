@@ -509,7 +509,7 @@ public class TestSimulationLoader extends SimulationLoader {
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 
-		algs.add(new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency,Histogram.DistanceMeasure.HELLIGNER.toString()));
+		algs.add(new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency,Histogram.DistanceMeasure.HELLINGER.toString()));
 		algs.add(new COSMO(1,vehicles,Histogram.DistanceMeasure.EUCLIDEAN,numSelectedSensors,updateFrequency,Histogram.DistanceMeasure.EUCLIDEAN.toString()));
 
 
@@ -765,7 +765,7 @@ public class TestSimulationLoader extends SimulationLoader {
 		config.addProperty(IConfig.PROPERTY_SENSOR_WHITE_LIST+"2","(0,1)");
 		config.addProperty(IConfig.PROPERTY_SENSOR_WHITE_LIST+"3","(100,6500)");
 
-		List<Sensor> actualSensors = TestSimulationLoader.loadSensors(config);
+		List<Sensor> actualSensors = TestSimulationLoader._loadSensors(config,IConfig.PROPERTY_SENSOR_WHITE_LIST);
 
 		Assert.assertEquals(sensors.size(),actualSensors.size());
 
@@ -773,7 +773,7 @@ public class TestSimulationLoader extends SimulationLoader {
 			Assert.assertEquals(true,	actualSensors.contains(s));
 		}
 	}
-
+	
 	@Test
 	public void testLoadVehicles() {
 		List<Vehicle> vehicles = new ArrayList<Vehicle>(50);
@@ -813,7 +813,7 @@ public class TestSimulationLoader extends SimulationLoader {
 		int updateFrequency = 7;
 		int numSelectedSensors = 2;
 
-		algs.add(new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLIGNER,numSelectedSensors,updateFrequency,Histogram.DistanceMeasure.HELLIGNER.toString()));
+		algs.add(new COSMO(0,vehicles,Histogram.DistanceMeasure.HELLINGER,numSelectedSensors,updateFrequency,Histogram.DistanceMeasure.HELLINGER.toString()));
 		algs.add(new COSMO(1,vehicles,Histogram.DistanceMeasure.EUCLIDEAN,numSelectedSensors,updateFrequency,Histogram.DistanceMeasure.EUCLIDEAN.toString()));
 		TestConfig config = new TestConfig();
 		/*
@@ -828,7 +828,7 @@ public class TestSimulationLoader extends SimulationLoader {
 		config.addProperty(IConfig.PROPERTY_NUMBER_OF_ALGORITHMS,"2");
 		config.addProperty(IConfig.PROPERTY_ALGORITHM_NUMBER_SELECTED_SENSORS,"2");
 		config.addProperty(IConfig.PROPERTY_ALGORITHM_ZSCORE_UPDATE_FREQUENCY,"7");
-		config.addProperty(IConfig.PROPERTY_ALGORITHM_DISTANCE_MEASURES+"0","HELLIGNER");
+		config.addProperty(IConfig.PROPERTY_ALGORITHM_DISTANCE_MEASURES+"0","HELLINGER");
 		config.addProperty(IConfig.PROPERTY_ALGORITHM_DISTANCE_MEASURES+"1","EUCLIDEAN");
 
 		List<Algorithm> actualAlgorithsm = TestSimulationLoader.loadAlgorithms(vehicles, config);

@@ -357,7 +357,7 @@ model.write(0, 6.0);
 		model.write(0, 2.0);
 		
 		model.flush();
-		Assert.assertEquals(0.0 ,model.computeStability(Histogram.DistanceMeasure.HELLIGNER),0.001);
+		Assert.assertEquals(0.0 ,model.computeStability(Histogram.DistanceMeasure.HELLINGER),0.001);
 		
 		
 		 model = new Model();
@@ -386,7 +386,7 @@ model.write(0, 6.0);
 			model.write(0, 45.0);
 			model.flush();
 			
-		Assert.assertEquals(false, compareDouble(model.computeStability(Histogram.DistanceMeasure.HELLIGNER),0.0,0.001));
+		Assert.assertEquals(false, compareDouble(model.computeStability(Histogram.DistanceMeasure.HELLINGER),0.0,0.001));
 		
 		 model = new Model();
 			model.write(0, 1.0);
@@ -415,7 +415,7 @@ model.write(0, 6.0);
 			model.write(0, 45.0);
 			model.flush();
 		
-			Assert.assertEquals(0.0 ,model.computeStability(Histogram.DistanceMeasure.HELLIGNER),0.001);
+			Assert.assertEquals(0.0 ,model.computeStability(Histogram.DistanceMeasure.HELLINGER),0.001);
 			 model = new Model();
 				model.write(0, 1.0);
 				model.write(0, 1.1);
@@ -443,7 +443,7 @@ model.write(0, 6.0);
 				model.flush();
 			
 		
-		double distCloser =model.computeStability(Histogram.DistanceMeasure.HELLIGNER);
+		double distCloser =model.computeStability(Histogram.DistanceMeasure.HELLINGER);
 		
 		 model = new Model();
 			model.write(0, 1.0);
@@ -480,7 +480,7 @@ model.write(0, 6.0);
 			model.write(0, 46.0);
 			model.flush();
 
-		double distFurther =model.computeStability(Histogram.DistanceMeasure.HELLIGNER);
+		double distFurther =model.computeStability(Histogram.DistanceMeasure.HELLINGER);
 		
 		Assert.assertEquals(true,distCloser < distFurther);
 		//Assert.assertEquals(3 ,h.getFrequency(0));

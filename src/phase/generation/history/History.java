@@ -171,6 +171,7 @@ public class History<K extends Serializable,V extends Serializable>  implements 
 		return res;
 	}
 
+	
 	/**
 	 * Stores a result into this history for a given algorithm and time.
 	 * It is thread safe if there is at most one thread per algorithm. This
