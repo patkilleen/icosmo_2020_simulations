@@ -48,7 +48,7 @@ Here we run all three different main  runs to create a simulation, organize the 
 
 Below we run 3 sets of experiments, each creating 10 output folders
 
-- core.Main /home/username/icosmo_sim/input/configs/config-1.xml core.Main /home/username/icosmo_sim/input/configs/config-2.xml core.Main /home/username/icosmo_sim/input/configs/config-3.xml
+- core.Main /home/username/icosmo_sim/input/configs/config-1.xml /home/username/icosmo_sim/input/configs/config-2.xml /home/username/icosmo_sim/input/configs/config-3.xml
 
 Below we copy the output over into a directory to organize the 30 output directories into 3 sub-directories (one for each experiment-set ran)
 
