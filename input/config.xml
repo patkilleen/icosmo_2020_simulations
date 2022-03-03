@@ -4,6 +4,7 @@
    <comment>configuration for icosmo thesis simulation</comment>
    <entry key="global.log.level">DEBUG</entry>
    <entry key="global.simulation-loader.analysis.replay.number.iterations">1</entry>
+   <entry key="global.simulation-loader.OS">WINDOWS</entry>
    <entry key="global.simulation-loader.root-directory">C:\example\root\project\java\icosmo_sim</entry>
    <entry key="global.simulation-loader.history.mode">CREATE</entry>
    <entry key="global.simulation-loader.history.input-file-path">history.ser</entry>

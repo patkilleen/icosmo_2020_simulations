@@ -38,10 +38,22 @@ A list of classes that define a main function are listed here.
 	- argument 5: the ouput sub directory prefix
 	
 	
-For example:
+#### Basic Example
 - core.Main /home/username/icosmo_sim/input/config.xml: would run the simulations specified by the config file in the input directory of icosmo_sim project
 - phase.analysis.output.ResultAggregator -ag /home/username/icosmo_sim/output roc-curve.png.csv /home/username/icosmo_sim/output/summary.csv: would summarized all the results in the output folder into a summary CSV file
 - phase.analysis.output.ResultAggregator -o /home/username/icosmo_sim/output /home/username/icosmo-analysis/ 15 -run: would iterate over each output folder in /home/username/icosmo_sim/output, creating subdirectories named 1-run, 2-run, 3-run, etc. and filling these directories with 15 result output directries
+
+#### Complete Example
+Here we run all three different main  runs to create a simulation, organize the results, and then analyze the results in each sub directory. Future work is to automate this process so it is performed by simply running a simulation.
+
+Below we run 3 sets of experiments, each creating 10 output folders
+- core.Main /home/username/icosmo_sim/input/configs/config-1.xml core.Main /home/username/icosmo_sim/input/configs/config-2.xml core.Main /home/username/icosmo_sim/input/configs/config-3.xml
+Below we copy the output over into a directory to organize the 30 output directories into 3 sub-directories (one for each experiment-set ran)
+- phase.analysis.output.ResultAggregator -o /home/username/icosmo_sim/output /home/username/icosmo-analysis/ 10 -run
+Below we analyze the results by aggregating results for each sub directory explicitly
+- phase.analysis.output.ResultAggregator -ag /home/username/icosmo-analysis/1-run  roc-curve.png.csv /home/username/icosmo-analysis/1-run/summary.csv
+- phase.analysis.output.ResultAggregator -ag /home/username/icosmo-analysis/2-run  roc-curve.png.csv /home/username/icosmo-analysis/2-run/summary.csv
+- phase.analysis.output.ResultAggregator -ag /home/username/icosmo-analysis/3-run  roc-curve.png.csv /home/username/icosmo-analysis/3-run/summary.csv
 
 
 ### Configuration file properties
@@ -49,6 +61,7 @@ Below is a list all the properties in the XML configuration file, along with the
 
 - **global.log.level**: (DEBUG,INFO,WARNING,ERROR,FATAL) used to filter the types (and frequency) of messages logged. DEBUG will log everything, so INFO is recommended.
 - **global.simulation-loader.analysis.replay.number.iterations**: (integer > 0) when *global.simulation-loader.history.mode"* = CREATE, specifies how many histories/simulations to create. When *global.simulation-loader.history.mode"* = READ, specifies how many iterations of ICOSMO will be run on a single history (specified by *global.simulation-loader.history.input-file-path*).
+- **global.simulation-loader.OS**: (LINUX,WINDOWS) LINUX: any '\' or '/' in file path config file property values will be replaced with '/'. WINDOWS: any '\' or '/' in file path properties will be replaced with '\'.
 - **global.simulation-loader.root-directory**: (string) the directory path where the ICOSMO simulation java project is found
 - **global.simulation-loader.history.mode**: (CREATE/READ/CONVERT_HISTORY_TO_CSV):
   - CREATE: creates a history
