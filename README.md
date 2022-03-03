@@ -47,10 +47,15 @@ A list of classes that define a main function are listed here.
 Here we run all three different main  runs to create a simulation, organize the results, and then analyze the results in each sub directory. Future work is to automate this process so it is performed by simply running a simulation.
 
 Below we run 3 sets of experiments, each creating 10 output folders
+
 - core.Main /home/username/icosmo_sim/input/configs/config-1.xml core.Main /home/username/icosmo_sim/input/configs/config-2.xml core.Main /home/username/icosmo_sim/input/configs/config-3.xml
+
 Below we copy the output over into a directory to organize the 30 output directories into 3 sub-directories (one for each experiment-set ran)
+
 - phase.analysis.output.ResultAggregator -o /home/username/icosmo_sim/output /home/username/icosmo-analysis/ 10 -run
+
 Below we analyze the results by aggregating results for each sub directory explicitly
+
 - phase.analysis.output.ResultAggregator -ag /home/username/icosmo-analysis/1-run  roc-curve.png.csv /home/username/icosmo-analysis/1-run/summary.csv
 - phase.analysis.output.ResultAggregator -ag /home/username/icosmo-analysis/2-run  roc-curve.png.csv /home/username/icosmo-analysis/2-run/summary.csv
 - phase.analysis.output.ResultAggregator -ag /home/username/icosmo-analysis/3-run  roc-curve.png.csv /home/username/icosmo-analysis/3-run/summary.csv
