@@ -1,4 +1,8 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
+/*This product contains SAE International copyrighted intellectual property, 
+which has been and is licensed with permission for use by Patrick Killeen, 
+in this application only. No further sharing, duplicating, or transmitting is permitted.*/
+
 /*This code was generated using the UMPLE 1.29.1.4359.01582bf35 modeling language!*/
 package phase.configuraiton.input.j1939;
 // line 20 "model.ump"

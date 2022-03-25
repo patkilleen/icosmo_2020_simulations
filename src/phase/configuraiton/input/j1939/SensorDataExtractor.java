@@ -90,10 +90,6 @@ public class SensorDataExtractor implements J1939Reader {
 	@Override
 	public void readSensorValue(long timeStamp,int pgn, int spn, double decodedValue, SensorDescription sd) {
 		
-	/*	if(spn == 174 && pgn ==65262){
-			System.out.println("found!");
-		}*/
-		
 		//ignored filtered pgn spn
 		if(isFiltered(pgn,spn)){
 			return;

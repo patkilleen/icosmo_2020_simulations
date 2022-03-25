@@ -1,3 +1,7 @@
+/*This product contains SAE International copyrighted intellectual property, 
+which has been and is licensed with permission for use by Patrick Killeen, 
+in this application only. No further sharing, duplicating, or transmitting is permitted.*/
+
 package phase.configuraiton.input.j1939;
 import java.io.BufferedWriter;
 import java.io.File;

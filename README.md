@@ -1,4 +1,12 @@
+This product contains SAE International copyrighted intellectual property, 
+which has been and is licensed with permission for use by Patrick Killeen, 
+in this application only. No further sharing, duplicating, or transmitting is permitted.
+
+
+**Important**: before using this project, keep in mind that some files have copyrighted material related to J1939 (see above message). Any file with the above paragraph has the copyrighted material.
+
 This Java eclipse project implements the predictive maintenance fleet management simulations done in <a href="https://ruor.uottawa.ca/handle/10393/40086">my thesis</a>.
+
 
 It simulates a fleet of buses using an input J1939 packet dataset (the dataset used in my thesis is private, so I only include a sample dataset). From this data, many buses are simulated and faults periodically occur. The COSMO approach and, my proposed approach, ICOSMO, are run to detect deviation in response to faults and are evaluated.
 
